@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fdf3e0;
+  --foreground: #0f2f35;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-itc);
+  --font-itc: var(--font-itc);
+  --font-display: var(--font-catalpa);
+
+  --color-white: #fff;
+  --color-cream: #fdf3e0;
+  --color-black: #0f2f35;
+  --color-pink: #e43b94;
+  --color-blue: #6fcbdc;
+  --color-olive: #cec075;
+  --color-scarlet: #fd5a5f;
+
+  --color-gradient-blue-cream: linear-gradient(45deg, #6FCBDC 0%, #FDF3E0 100%)
+  --color-gradient-scarlet-cream: linear-gradient(45deg, #FD5A5F 0%, #FDF3E0 100%) 
+  --color-gradient-pink-cream: linear-gradient(45deg, #E43B94 0%, #FDF3E0 100%)
+  --color-gradient-pink-blue: linear-gradient(45deg, #E43B94 0%, #6FCBDC 100%)
+  --color-gradient-scarlet-pink: linear-gradient(45deg, #FD5A5F 0%, #E43B94 100%)
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #fdf3e0;
+    --foreground: #0f2f35;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-itc), system, sans-serif;
+}
+
+.text-stroke {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--foreground);
+}
+
+.text-shadow-lg {
+  text-shadow: 2px 2px 0 var(--foreground);
+}
+
+.text-shadow-sm {
+  text-shadow: 1px 2px 0 var(--foreground);
+}
+
+@media (min-width: 640){
+  .text-stroke {
+    -webkit-text-stroke-width: 2px;
+  }
+
+  .text-shadow-lg {
+    text-shadow: 5px 4px 0 var(--foreground);
+  }
+
+  .text-shadow-sm {
+    text-shadow: 4px 3px 0 var(--foreground);
+  }
+}
