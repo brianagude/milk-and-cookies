@@ -3,9 +3,10 @@
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { useEffect, useState } from "react";
+import { SanityImageAsset } from "@types"
 
 interface HeaderProps {
-  logo?: any,
+  logo?: SanityImageAsset,
 }
 
 export default function Header({
@@ -39,7 +40,7 @@ export default function Header({
       style={{ transform: `translateY(${translateY}%)` }}
     >
       <div className="w-full max-w-[1728px] mx-auto px-4 flex items-center justify-center">
-        <Image src={logoUrl} width={186} height={96} alt="milk and cookies logo" priority />
+        <Image src={logoUrl} width={186} height={96} alt="milk and cookies logo" priority className="max-h-16 sm:max-h-full" />
       </div>
     </header>
   );

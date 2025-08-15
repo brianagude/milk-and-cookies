@@ -1,9 +1,10 @@
 // components/HeroSection.jsx
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image"
+import { SanityImageAsset } from "@types"
 
 interface DividerProps {
-  backgroundImage?: any,
+  backgroundImage?: SanityImageAsset,
 }
 
 export default function Divider({

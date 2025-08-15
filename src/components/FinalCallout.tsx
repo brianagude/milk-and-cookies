@@ -4,12 +4,13 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image"
 import { spacing } from "@/styles/design-tokens";
 import { useGlobalData } from "./GlobalDataContext";
+import { SanityImageAsset } from "@types"
 
 interface FinalCalloutProps {
   kicker: string;
   subtitle?: string;
   title?: string;
-  backgroundImage?: any,
+  backgroundImage?: SanityImageAsset,
 }
 
 export default function FinalCallout({
@@ -81,7 +82,7 @@ export default function FinalCallout({
           <div className="absolute inset-0 z-10">
             <Image
               src={urlFor(backgroundImage).url()}
-              alt={backgroundImage.alt || "Crowd at Milk & Cookies Fest"}
+              alt={backgroundImage.altText || "Crowd at Milk & Cookies Fest"}
               fill
               className="object-cover"
               priority
@@ -90,7 +91,7 @@ export default function FinalCallout({
           </div>
         )}
       </section>
-      <footer className="py-3 bg-cream max-w-[1728px] border-l-4 border-r-4 mx-auto">
+      <footer className="py-3 bg-cream max-w-[1728px] border-4 border-t-0 mx-auto">
         <div className="w-full px-4 flex flex-col items-center justify-center text-center gap-3 sm:flex-row sm:justify-between">
           <p>&copy;{year} {footer.copyrightText && footer.copyrightText}</p>
           { footer.linkList && footer.linkList.length > 0 &&

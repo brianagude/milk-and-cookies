@@ -2,13 +2,14 @@
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image"
 import { spacing } from "@/styles/design-tokens";
+import { SanityImageAsset } from "@types"
 
 interface HeroSectionProps {
   headline1: string;
   headline2?: string;
   subheadline1?: string;
   subheadline2?: string,
-  backgroundImage?: any,
+  backgroundImage?: SanityImageAsset,
 }
 
 export default function HeroSection({
@@ -52,7 +53,7 @@ export default function HeroSection({
         <div className="absolute inset-0 z-10">
           <Image
             src={urlFor(backgroundImage).url()}
-            alt={backgroundImage.alt || "Crowd at Milk & Cookies Fest"}
+            alt={backgroundImage.altText || "Crowd at Milk & Cookies Fest"}
             fill
             className="object-cover"
             priority
