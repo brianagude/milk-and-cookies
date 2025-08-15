@@ -9,7 +9,7 @@ interface GlobalData {
   children: React.ReactNode;
 }
 
-const GlobalDataContext = createContext<any>(null);
+const GlobalDataContext = createContext<Settings[] | null>(null);
 
 export default function GlobalDataProvider({ value, children }: GlobalData) {
   return (
