@@ -5,13 +5,17 @@ import { createContext, useContext } from "react";
 import { Settings } from "@types"
 
 interface GlobalData {
-  value: Settings[];
+  footer: Settings[];
+}
+
+interface GlobalDataProviderProps {
+  value: GlobalData;
   children: React.ReactNode;
 }
 
-const GlobalDataContext = createContext<Settings[] | null>(null);
+const GlobalDataContext = createContext<GlobalData | null>(null);
 
-export default function GlobalDataProvider({ value, children }: GlobalData) {
+export default function GlobalDataProvider({ value, children }: GlobalDataProviderProps) {
   return (
     <GlobalDataContext.Provider value={value}>
       {children}
