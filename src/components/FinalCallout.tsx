@@ -53,13 +53,12 @@ export default function FinalCallout({
           </div>
           { footer.socialLinks && footer.socialLinks.length > 0 &&
             <ul className="flex gap-4 items-center justify-center w-fit flex-wrap text-cream">
-              {footer.socialLinks.map(
-                ({ _key, url, platform }: { _key: string; url: string; platform: string }) => (
+              {footer.socialLinks.map(({ _key, url, platform }) => (
                   <li key={_key}>
                     <a href={url}>
                       <Image
                         src={`/${platform}.svg`}
-                        alt={platform}
+                        alt={platform || 'social icon'}
                         width={24}
                         height={24}
                       />
@@ -96,8 +95,7 @@ export default function FinalCallout({
           <p>&copy;{year} {footer.copyrightText && footer.copyrightText}</p>
           { footer.linkList && footer.linkList.length > 0 &&
             <ul className="flex gap-4 items-center justify-center w-fit flex-wrap">
-              {footer.linkList.map(
-                ({ _key, url, text }: { _key: string; url: string; text: string }) => (
+              {footer.linkList.map(({ _key, url, text }) => (
                   <li key={_key}>
                     <a href={url}>
                       {text}
@@ -105,7 +103,6 @@ export default function FinalCallout({
                   </li>
                 )
               )}
-
             </ul>
           }
         </div>

@@ -4,10 +4,10 @@
 import { createContext, useContext } from "react";
 import { Settings } from "@types"
 
+type Footer = NonNullable<Settings["footer"]>;
 interface GlobalData {
-  footer: Settings[];
+  footer: Footer;
 }
-
 interface GlobalDataProviderProps {
   value: GlobalData;
   children: React.ReactNode;
@@ -23,6 +23,11 @@ export default function GlobalDataProvider({ value, children }: GlobalDataProvid
   );
 }
 
-export function useGlobalData() {
-  return useContext(GlobalDataContext);
+export function useGlobalData(): GlobalData {
+  const context = useContext(GlobalDataContext);
+  if (!context) {
+    throw new Error("useGlobalData must be used within a GlobalDataProvider");
+  }
+  return context;
 }
+
