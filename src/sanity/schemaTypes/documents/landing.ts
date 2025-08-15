@@ -65,6 +65,11 @@ export const landing = defineType({
       type: "object",
       fields: [
         defineField({
+          name: "actionUrl",
+          title: "Mailchimp Form URL",
+          type: "string",
+        }),
+        defineField({
           name: "title",
           title: "Title",
           type: "text",
@@ -81,15 +86,15 @@ export const landing = defineType({
           type: "string",
           options: {
             list: [
-              { title: "Cream", value: "bg-cream" },
-              { title: "Blue", value: "bg-blue" },
-              { title: "Olive", value: "bg-olive" },
-              { title: "Scarlet", value: "bg-scarlet" },
-              { title: "Gradient Blue Cream", value: "bg-gradient-blue-cream" },
-              { title: "Gradient Scarlet Cream", value: "bg-gradient-scarlet-cream" },
-              { title: "Gradient Pink Cream", value: "bg-gradient-pink-cream" },
-              { title: "Gradient Pink Blue", value: "bg-gradient-pink-blue" },
-              { title: "Gradient Scarlet Pink", value: "bg-gradient-scarlet-pink" },
+              { title: "Cream", value: "cream" },
+              { title: "Blue", value: "blue" },
+              { title: "Olive", value: "olive" },
+              { title: "Scarlet", value: "scarlet" },
+              { title: "Gradient Blue Cream", value: "gradient-blue-cream" },
+              { title: "Gradient Scarlet Cream", value: "gradient-scarlet-cream" },
+              { title: "Gradient Pink Cream", value: "gradient-pink-cream" },
+              { title: "Gradient Pink Blue", value: "gradient-pink-blue" },
+              { title: "Gradient Scarlet Pink", value: "gradient-scarlet-pink" },
             ],
           },
         }),
@@ -150,6 +155,33 @@ export const landing = defineType({
           title: "Subtitle",
           type: "text",
           rows: 2
+        }),
+      ],
+    }),
+     // SEO Settings
+    defineField({
+      name: "seo",
+      title: "SEO",
+      type: "object",
+      fields: [
+        defineField({
+          name: "title",
+          title: "Default Title",
+          type: "string",
+          description: "Default title for pages without specific SEO title",
+        }),
+        defineField({
+          name: "text",
+          title: "Default Description",
+          type: "text",
+          rows: 3,
+          description: "Default meta description for pages without specific SEO description",
+        }),
+        defineField({
+          name: "image",
+          title: "Default OG Image",
+          type: "image",
+          description: "Default Open Graph image for social media sharing",
         }),
       ],
     }),

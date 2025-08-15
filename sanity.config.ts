@@ -10,7 +10,6 @@ import {presentationTool} from "sanity/presentation";
 import {muxInput} from 'sanity-plugin-mux-input';
 import {media} from 'sanity-plugin-media'
 
-
 export default defineConfig({
   basePath: '/admin',
   projectId,

@@ -3,27 +3,35 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image"
 import { spacing } from "@/styles/design-tokens";
 
+interface HeroSectionProps {
+  headline1: string;
+  headline2?: string;
+  subheadline1?: string;
+  subheadline2?: string,
+  backgroundImage?: any,
+}
+
 export default function HeroSection({
   headline1,
   headline2,
   subheadline1,
   subheadline2,
   backgroundImage,
-}) {
+}: HeroSectionProps) {
   // If no main content provided, render nothing
   if (!headline1 && !headline2 && !subheadline1 && !subheadline2) return null;
 
   return (
-    <section className={`${spacing.section} min-h-svh !pt-28 sm:!pt-32 relative`}>
+    <section className={`${spacing.section} min-h-svh !pt-28 sm:!pt-40 relative`}>
       <div className={`${spacing.container} relative z-20`}>
         <div className="text-block w-full flex flex-col items-center justify-center text-center">
           {headline1 && (
-            <h1 className="text-stroke text-shadow-lg text-pink font-bold leading-[1.33] tracking-wider uppercase font-display rotate-2 text-4xl sm:text-5xl md:text-6xl xl:text-8xl">
+            <h1 className="text-stroke text-shadow-lg text-pink font-bold leading-[1.33] tracking-wider uppercase font-display rotate-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl">
               {headline1}
             </h1>
           )}
           {headline2 && (
-            <h2 className="text-stroke text-shadow-lg text-olive font-bold leading-[1.33] tracking-wider uppercase font-display -rotate-2 text-4xl sm:text-5xl md:text-6xl xl:text-8xl">
+            <h2 className="text-stroke text-shadow-lg text-olive font-bold leading-[1.33] tracking-wider uppercase font-display -rotate-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl">
               {headline2}
             </h2>
           )}

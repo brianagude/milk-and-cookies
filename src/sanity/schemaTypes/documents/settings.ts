@@ -139,34 +139,6 @@ export const settings = defineType({
         }),
       ],
     }),
-
-    // SEO Settings
-    defineField({
-      name: "seo",
-      title: "SEO",
-      type: "object",
-      fields: [
-        defineField({
-          name: "title",
-          title: "Default Title",
-          type: "string",
-          description: "Default title for pages without specific SEO title",
-        }),
-        defineField({
-          name: "text",
-          title: "Default Description",
-          type: "text",
-          rows: 3,
-          description: "Default meta description for pages without specific SEO description",
-        }),
-        defineField({
-          name: "image",
-          title: "Default OG Image",
-          type: "image",
-          description: "Default Open Graph image for social media sharing",
-        }),
-      ],
-    }),
   ],
   preview: {
     select: {
