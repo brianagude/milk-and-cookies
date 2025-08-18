@@ -1,13 +1,14 @@
 // components/FinalCallout.jsx
 "use client"
 import Image from "next/image";
+import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image"
 import { spacing } from "@/styles/design-tokens";
 import { useGlobalData } from "./GlobalDataContext";
 import { SanityImageAsset } from "@types"
 
 interface FinalCalloutProps {
-  kicker: string;
+  kicker?: string;
   subtitle?: string;
   title?: string;
   backgroundImage?: SanityImageAsset,
@@ -95,6 +96,7 @@ export default function FinalCallout({
           <p>&copy;{year} {footer.copyrightText && footer.copyrightText}</p>
           { footer.linkList && footer.linkList.length > 0 &&
             <ul className="flex gap-4 items-center justify-center w-fit flex-wrap">
+              <Link href="/">Home</Link>
               {footer.linkList.map(({ _key, url, text }) => (
                   <li key={_key}>
                     <a href={url}>

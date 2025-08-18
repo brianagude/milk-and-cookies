@@ -30,7 +30,9 @@ export default async function RootLayout({
     <>
       <Header logo={settings?.header?.logo} />
       <GlobalDataProvider value={{ footer }}>
+        <main className="z-40">
         {children}
+        </main>
       </GlobalDataProvider>
 
       {isEnabled && (

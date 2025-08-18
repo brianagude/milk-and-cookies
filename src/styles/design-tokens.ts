@@ -13,3 +13,20 @@ export const forms = {
   fieldset: 'flex flex-col gap-2'
 }
 
+export const baseText = `text-pretty font-sans font-bold block max-w-[80ch]`
+
+export const typography = {
+  h1: `${baseText} leading-tight text-3xl sm:text-5xl lg:text-6xl`,
+  h2: `${baseText} leading-tight text-3xl sm:text-4xl xl:text-5xl`,
+  h3: `${baseText} leading-tight text-2xl sm:text-3xl`,
+  h4: `${baseText} leading-tight text-xl sm:text-2xl`,
+  h5: `${baseText} leading-normal text-lg sm:text-xl`,
+  h6: `${baseText} leading-normal text-base sm:text-lg`,
+
+  bodyLarge: 'text-lg font-light leading-snug lg:text-2xl',
+  body: 'text-base font-light leading-snug sm:text-lg',
+  bodySmall: 'text-base font-light leading-snug',
+
+  link: 'break-all font-medium underline'
+}
+

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
 import { useEffect, useState } from "react";
 import { SanityImageAsset } from "@types"
@@ -40,7 +41,9 @@ export default function Header({
       style={{ transform: `translateY(${translateY}%)` }}
     >
       <div className="w-full max-w-[1728px] mx-auto px-4 flex items-center justify-center">
-        <Image src={logoUrl} width={186} height={96} alt="milk and cookies logo" priority className="max-h-16 sm:max-h-full" />
+        <Link href="/">
+          <Image src={logoUrl} width={186} height={96} alt="milk and cookies logo" priority className="max-h-16 sm:max-h-full" />
+        </Link>
       </div>
     </header>
   );
