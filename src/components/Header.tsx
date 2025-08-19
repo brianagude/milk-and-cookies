@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
 import { useEffect, useState } from "react";
-import { SanityImageAsset } from "@types"
+import type { SanityImageAsset } from "@types"
 
 interface HeaderProps {
   logo?: SanityImageAsset,

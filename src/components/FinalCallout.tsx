@@ -5,7 +5,7 @@ import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image"
 import { spacing } from "@/styles/design-tokens";
 import { useGlobalData } from "./GlobalDataContext";
-import { SanityImageAsset } from "@types"
+import type { SanityImageAsset } from "@types"
 
 interface FinalCalloutProps {
   kicker?: string;

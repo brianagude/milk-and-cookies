@@ -52,8 +52,14 @@ export const landing = defineType({
         defineField({
           name: "subheadline2",
           title: "Subheadline 2",
-          type: "text",
-          rows: 2
+          type: 'array', 
+          of: [{
+            type: 'block',
+            styles: [
+              {title: 'Normal', value: 'normal'}
+            ],
+          }
+        ]
         }),
       ],
     }),

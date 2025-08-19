@@ -2,14 +2,43 @@
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image"
 import { spacing } from "@/styles/design-tokens";
-import { SanityImageAsset } from "@types"
+import type { SanityImageAsset } from "@types"
+import {PortableText} from '@portabletext/react'
+import type { PortableTextComponents } from "next-sanity";
+
+export type SimpleBlockContent = Array<{
+  children?: Array<{
+    marks?: Array<string>
+    text?: string
+    _type: 'span'
+    _key: string
+  }>
+  style?: 'normal' | 'k1' | 'k2' | 'large' | 'small'
+  listItem?: 'bullet' | 'number'
+  markDefs?: Array<{
+    href?: string
+    _type: 'link'
+    _key: string
+  }>
+  level?: number
+  _type: 'block'
+  _key: string
+}>
 
 interface HeroSectionProps {
   headline1: string;
   headline2?: string;
   subheadline1?: string;
-  subheadline2?: string,
+  subheadline2?: SimpleBlockContent,
   backgroundImage?: SanityImageAsset,
+}
+
+const portableTextComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <h6 className="text-stroke text-shadow-sm mt-2 text-cream font-bold leading-[1.33] tracking-wider uppercase font-sans text-lg sm:text-2xl xl:text-3xl">{children}</h6>
+    ),
+  },
 }
 
 export default function HeroSection({
@@ -42,9 +71,13 @@ export default function HeroSection({
             </h3>
           )}
           {subheadline2 && (
-            <h4 className="text-stroke text-shadow-sm mt-2 text-cream font-bold leading-[1.33] tracking-wider uppercase font-sans text-lg sm:text-2xl xl:text-3xl">
-              {subheadline2}
-            </h4>
+            // <h4 className="text-stroke text-shadow-sm mt-2 text-cream font-bold leading-[1.33] tracking-wider uppercase font-sans text-lg sm:text-2xl xl:text-3xl">
+            //   {subheadline2}
+            // </h4>
+            <PortableText
+              value={subheadline2}
+              components={portableTextComponents}
+            />
           )}
         </div>
       </div>

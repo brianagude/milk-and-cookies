@@ -17,11 +17,11 @@ export default async function IndexPage() {
     {}, 
     options,
   );
-
+  
   if (!data) return notFound()
-
+    
   const { hero, newsletter, divider, finalCallout } = data || {}
-
+    
   return (
     <>
       {hero && <HeroSection {...hero} />}

@@ -11,6 +11,9 @@ importers:
       '@mux/mux-player-react':
         specifier: ^3.4.0
         version: 3.5.3(@types/react-dom@19.1.7(@types/react@19.1.10))(@types/react@19.1.10)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@portabletext/react':
+        specifier: ^3.2.1
+        version: 3.2.1(react@19.1.0)
       '@sanity/icons':
         specifier: ^3.7.4
         version: 3.7.4(react@19.1.0)
