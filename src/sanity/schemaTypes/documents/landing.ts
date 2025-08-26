@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { buttonFields } from "../inputs/button"
 
 export const landing = defineType({
 	name: "landing",
@@ -18,7 +19,6 @@ export const landing = defineType({
 					options: {
 						hotspot: true,
 					},
-					validation: (Rule) => Rule.required(),
 					fields: [
 						defineField({
 							name: "alt",
@@ -27,6 +27,11 @@ export const landing = defineType({
 							validation: (Rule) => Rule.required(),
 						}),
 					],
+				}),
+				defineField({
+					name: "backgroundVideo",
+					title: "Background Video",
+					type: "mux.video"
 				}),
 				defineField({
 					name: "kicker",
@@ -42,6 +47,25 @@ export const landing = defineType({
 					name: "headline2",
 					title: "Headline 2",
 					type: "string",
+				}),
+				defineField({
+					name: "subheadline",
+					title: "Subheadline",
+					type: "blockContent",
+				}),
+				defineField({
+					name: 'buttons',
+					title: 'Buttons',
+					type: 'array',
+					validation: Rule => Rule.max(3),
+					of: [
+						defineField({
+							name: "button",
+							title: "Button",
+							type: "object",
+							fields: [...buttonFields]
+						}),
+					]
 				}),
 				defineField({
 					name: "subheadline1",
@@ -62,6 +86,18 @@ export const landing = defineType({
 				}),
 			],
 		}),
+		defineField({
+      name: 'body',
+      title: 'Body',
+      type: 'array',
+      of: [
+        {type: 'brandsCallout'},
+        {type: 'countdown'},
+        {type: 'marquee'},
+        {type: 'newsletter'},
+        {type: 'textCallout'},
+      ],
+    }),
 		defineField({
 			name: "countdown",
 			title: "Countdown Section",
@@ -186,33 +222,10 @@ export const landing = defineType({
 					type: "text",
 					rows: 2,
 				}),
-			],
-		}),
-		// SEO Settings
-		defineField({
-			name: "seo",
-			title: "SEO",
-			type: "object",
-			fields: [
 				defineField({
-					name: "title",
-					title: "Default Title",
-					type: "string",
-					description: "Default title for pages without specific SEO title",
-				}),
-				defineField({
-					name: "text",
-					title: "Default Description",
-					type: "text",
-					rows: 3,
-					description:
-						"Default meta description for pages without specific SEO description",
-				}),
-				defineField({
-					name: "image",
-					title: "Default OG Image",
-					type: "image",
-					description: "Default Open Graph image for social media sharing",
+					name: "body",
+					title: "Body Text",
+					type: "blockContent",
 				}),
 			],
 		}),
