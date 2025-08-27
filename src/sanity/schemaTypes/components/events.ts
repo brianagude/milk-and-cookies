@@ -53,7 +53,7 @@ export const events = defineType({
             }),
             defineField({
               name: "link",
-              title: "Link to article",
+              title: "RSVP Link",
               type: "url",
               validation: (Rule) => Rule.required(),
             }),
@@ -101,13 +101,25 @@ export const events = defineType({
                             }),
                           ],
                         }),
-                      ]
+                      ],
                     }),
-                  ]
+                  ],
                 }),
               ]
             }),
-          ]
+          ],
+          preview: {
+            select: {
+              title: "name",
+              subtitle: "date"
+            },
+            prepare({ title, subtitle }) {
+              return {
+                title,
+                subtitle,
+              };
+            },
+          },
         }),
       ]
     }),

@@ -30,7 +30,8 @@ interface HeroSectionProps {
 	style?: string;
 	headline1: string;
 	headline2?: string;
-	subheadline?: SimpleBlockContent;
+	subheadline?: string;
+	body?: SimpleBlockContent;
 	backgroundImage?: SanityImageAsset;
 }
 
@@ -38,6 +39,7 @@ export default function HeroSection({
 	headline1,
 	headline2,
 	subheadline,
+	body,
 	backgroundImage,
 	buttons,
 	style
@@ -45,7 +47,7 @@ export default function HeroSection({
 	if (!headline1 && !headline2 && !subheadline) return null;
 
 	return (
-		<section className={`${spacing.section} min-h-svh !pt-28 sm:!pt-40 relative`}>
+		<section className={`${spacing.section} ${style === "landing" ? "" : "flex flex-col items-center justify-center"} min-h-svh relative !pt-28 sm:!pt-40`}>
 			<div className={`${spacing.container} relative z-20`}>
 				<div className="text-block w-full flex flex-col items-center justify-center text-center">
 					{headline1 && (
@@ -64,9 +66,9 @@ export default function HeroSection({
 							{headline2}
 						</h2>
 					)}
-					{subheadline && (
+					{body && (
 						<BlockContent
-							value={subheadline}
+							value={body}
 						/>
 					)}
 				</div>

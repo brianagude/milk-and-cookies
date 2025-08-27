@@ -9,7 +9,7 @@ export default function ActionsWrapper(module) {
   const {backgroundImage, sections} = module
 
   return (
-    <section className="relative scroll-mt-2 py-16 max-w-[1728px] mx-auto border-4 border-b-0">
+    <section className="relative scroll-mt-2 max-w-[1728px] mx-auto border-4 border-b-0">
       <div className="relative z-20">
         {sections && (
           <div className="section-wrapper">
