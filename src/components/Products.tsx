@@ -34,7 +34,7 @@ export default function Products(section) {
   if (!products || products.length === 0) return null;
 
   return (
-    <section className={spacing.section}>
+    <section className={spacing.section} id="products">
       <div className={products.length < 4 ? spacing.container : 'space-y-6 md:space-y-10'}>
         {headline && (
           <h2 className={`${typography.h3} text-center`}>{headline}</h2>
