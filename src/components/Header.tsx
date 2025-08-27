@@ -1,50 +1,56 @@
 "use client";
 
+import type { SanityImageAsset } from "@types";
 import Image from "next/image";
 import Link from "next/link";
-import { urlFor } from "@/sanity/lib/image";
 import { useEffect, useState } from "react";
-import type { SanityImageAsset } from "@types"
+import { urlFor } from "@/sanity/lib/image";
 
 interface HeaderProps {
-  logo?: SanityImageAsset,
+	logo?: SanityImageAsset;
 }
 
-export default function Header({
-  logo
-}: HeaderProps) {
-  const [translateY, setTranslateY] = useState(0);
-  const logoUrl = logo ? urlFor(logo).url() : '/logo-header.svg'
+export default function Header({ logo }: HeaderProps) {
+	const [translateY, setTranslateY] = useState(0);
+	const logoUrl = logo ? urlFor(logo).url() : "/logo-header.svg";
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
-      
-      // Instantly hide header when within 400px of bottom, show otherwise
-      if (distanceFromBottom <= 400) {
-        setTranslateY(-100);
-      } else {
-        setTranslateY(0);
-      }
-    };
+	useEffect(() => {
+		const handleScroll = () => {
+			const scrollTop =
+				window.pageYOffset || document.documentElement.scrollTop;
+			const windowHeight = window.innerHeight;
+			const documentHeight = document.documentElement.scrollHeight;
+			const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+			// Instantly hide header when within 400px of bottom, show otherwise
+			if (distanceFromBottom <= 400) {
+				setTranslateY(-100);
+			} else {
+				setTranslateY(0);
+			}
+		};
 
-  return (
-    <header 
-      className="fixed top-0 w-full pt-2 pb-3 z-50 pointer-events-none sm:pt-4 sm:pb-5 transition-transform duration-500 ease-out"
-      style={{ transform: `translateY(${translateY}%)` }}
-    >
-      <div className="w-full max-w-[1728px] mx-auto px-4 flex items-center justify-center">
-        <Link href="/">
-          <Image src={logoUrl} width={186} height={96} alt="milk and cookies logo" priority className="max-h-16 sm:max-h-full" />
-        </Link>
-      </div>
-    </header>
-  );
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
+
+	return (
+		<header
+			className="fixed top-0 w-full pt-2 pb-3 z-50 sm:pt-4 sm:pb-5 transition-transform duration-500 ease-out"
+			style={{ transform: `translateY(${translateY}%)` }}
+		>
+			<div className="w-full max-w-[1728px] mx-auto px-4 flex items-center justify-center">
+				<Link href="/">
+					<Image
+						src={logoUrl}
+						width={186}
+						height={96}
+						alt="milk and cookies logo"
+						priority
+						className="max-h-16 sm:max-h-full"
+					/>
+				</Link>
+			</div>
+		</header>
+	);
 }

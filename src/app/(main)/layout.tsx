@@ -1,10 +1,10 @@
-import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity";
 import { DisableDraftMode } from "@/components/DisableDraftMode";
-import { client } from "@/sanity/lib/client";
-import { TailwindHelper } from "@/components/TailwindHelper";
-import Header from "@/components/Header";
 import GlobalDataProvider from "@/components/GlobalDataContext";
+import Header from "@/components/Header";
+import { TailwindHelper } from "@/components/TailwindHelper";
+import { client } from "@/sanity/lib/client";
 
 // ---------- GROQ Query ----------
 const query = `*[_type == "settings"][0]{
@@ -18,31 +18,29 @@ const query = `*[_type == "settings"][0]{
 const options = { next: { revalidate: 30 } };
 
 export default async function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  const { isEnabled } = await draftMode();
-  const settings = await client.fetch(query, {}, options);
-  const footer = settings?.footer || [];
+	const { isEnabled } = await draftMode();
+	const settings = await client.fetch(query, {}, options);
+	const footer = settings?.footer || [];
 
-  return (
-    <>
-      <Header logo={settings?.header?.logo} />
-      <GlobalDataProvider value={{ footer }}>
-        <main className="z-40">
-        {children}
-        </main>
-      </GlobalDataProvider>
+	return (
+		<>
+			<Header logo={settings?.header?.logo} />
+			<GlobalDataProvider value={{ footer }}>
+				<main className="z-40">{children}</main>
+			</GlobalDataProvider>
 
-      {isEnabled && (
-        <>
-          <VisualEditing />
-          <DisableDraftMode />
-        </>
-      )}
+			{isEnabled && (
+				<>
+					<VisualEditing />
+					<DisableDraftMode />
+				</>
+			)}
 
-      {process.env.NODE_ENV === "development" && <TailwindHelper />}
-    </>
-  );
+			{process.env.NODE_ENV === "development" && <TailwindHelper />}
+		</>
+	);
 }
