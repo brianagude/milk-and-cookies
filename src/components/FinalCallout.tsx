@@ -112,7 +112,7 @@ export default function FinalCallout({
 			</section>
 			<footer className="py-3 bg-cream max-w-[1728px] border-4 border-t-0 mx-auto">
 				<div className="w-full px-4 flex flex-col items-center justify-center text-center gap-3 sm:flex-row sm:justify-between">
-					<p className={typography.body}>
+					<p className={`${typography.body} sm:ml-0`}>
 						&copy;{year} {footer.copyrightText && footer.copyrightText}
 					</p>
 					{footer.linkList && footer.linkList.length > 0 && (

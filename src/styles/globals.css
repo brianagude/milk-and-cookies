@@ -71,3 +71,16 @@ body {
     text-shadow: 4px 3px 0 var(--foreground);
   }
 }
+
+mux-player {
+  --controls: none;
+  --media-object-fit: cover;
+
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+mux-player::part(gesture-layer) {
+  display: none;
+}

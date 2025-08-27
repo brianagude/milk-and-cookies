@@ -10,10 +10,15 @@ import BrandsCallout from "@/components/BrandsCallout";
 import { client } from "@/sanity/lib/client";
 
 const query = `*[_type == "home"][0]{
-	hero,
+	hero {
+  ...,
+  "playbackId": backgroundVideo.asset->playbackId,
+  },
 	divider,
 	finalCallout,
-	sections
+	sections[]{
+    ...
+  }
 }`;
 
 const options = { next: { revalidate: 30 } };
@@ -22,6 +27,7 @@ export default async function Home() {
 	const data = await client.fetch(query, {}, options);
 	if (!data) return notFound();
 	const { hero, sections, divider, finalCallout } = data || {};
+  // console.log('sections: ', sections)
 
 	return (
 		<>

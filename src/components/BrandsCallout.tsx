@@ -36,7 +36,7 @@ export default function BrandsCallout(module) {
                 <Image src={urlFor(brand.logo).url()} alt={brand.logo.alt} width={250} height={40} className="h-10 w-auto"/>
               </>
               return (
-                brand.link ? <Link key={brand._key} href={brand.link}>{content}</Link> : <div key={brand._key}>{content}</div>
+                brand.link ? <Link key={brand._key} href={brand.link} className="hover:-translate-y-1 transition-transform">{content}</Link> : <div key={brand._key}>{content}</div>
               );
             })}
           </div>

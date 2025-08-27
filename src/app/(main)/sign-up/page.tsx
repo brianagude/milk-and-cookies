@@ -7,7 +7,10 @@ import Countdown from "@/components/Countdown";
 import { client } from "@/sanity/lib/client";
 
 const query = `*[_type == "landing"][0]{
-  hero,
+  hero {
+  ...,
+  "playbackId": backgroundVideo.asset->playbackId,
+  },
 	newsletter,
 	divider,
 	finalCallout,

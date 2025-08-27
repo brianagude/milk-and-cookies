@@ -73,7 +73,6 @@ export default function Events(section) {
 
 // Event card with Learn More
 function EventCard({ event, onLearnMore }) {
-  console.log(event.info)
   return (
     <div
       key={event._key}
@@ -100,14 +99,7 @@ function EventCard({ event, onLearnMore }) {
       </div>
 
       <div className="space-y-3">
-        <Button
-          url={event.link}
-          style="secondary"
-          text="buy tickets"
-          classes="!w-full"
-        />
-
-        {event.info && (
+        {/* {event.info && (
           <Drawer.Trigger asChild>
             <button
               type="button"
@@ -117,7 +109,13 @@ function EventCard({ event, onLearnMore }) {
               Learn More
             </button>
           </Drawer.Trigger>
-        )}
+        )} */}
+        <Button
+          url={event.link}
+          style="secondary"
+          text="buy tickets"
+          classes="!w-full"
+        />
       </div>
     </div>
   );

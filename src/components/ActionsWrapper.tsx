@@ -4,9 +4,11 @@ import { urlFor } from "@/sanity/lib/image";
 import Countdown from "./Countdown";
 import Events from "./Events";
 import Products from "./Products";
+import Video from "./inputs/Video";
 
 export default function ActionsWrapper(module) {
-  const {backgroundImage, sections} = module
+  const { backgroundImage, sections, backgroundVideo } = module
+  // console.log(module)
 
   return (
     <section className="relative scroll-mt-2 max-w-[1728px] mx-auto border-4 border-b-0">
