@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { typography } from "@/styles/design-tokens";
+import { typography, spacing } from "@/styles/design-tokens";
 
 type CountdownProps = {
   countdownDate: string;
@@ -50,7 +50,7 @@ export default function Countdown({ countdownDate, countdownText, style = "home"
 
   // Styling classes
   const landingClass = "bg-cream border-black border-4 border-b-0";
-  const homeClass = "px-4 sm:px-6 md:px-8 lg:px-20";
+  const homeClass = `${spacing.section} px-4 sm:px-6 md:px-8 lg:px-20`;
   const dotContainerClass = "space-y-1 md:space-y-2";
   const dotClass = `${style === "landing" ? "bg-olive" : "bg-pink"} text-shadow-lg border-2 w-[10px] rounded-full aspect-square sm:w-4 sm:border-4 lg:w-5`;
   const counterClass = `${typography.h2} ${typography.blockLarge} w-full text-center !leading-none 2xl:text-9xl ${style === "landing" ? "text-olive" : "text-pink"}`;
