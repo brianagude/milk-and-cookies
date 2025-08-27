@@ -21,7 +21,7 @@ export default function TextCallout(module) {
             {subheadline && (
               <BlockContent
                 value={subheadline}
-                classes="sm:columns-2"
+                classes="lg:columns-2"
               />
             )}
           </div>
