@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { typography } from "@/styles/design-tokens";
 
 type CountdownProps = {
   countdownDate: string;
@@ -52,8 +53,7 @@ export default function Countdown({ countdownDate, countdownText, style = "home"
   const homeClass = "";
   const dotContainerClass = "space-y-1 md:space-y-2";
   const dotClass = `${style === "landing" ? "bg-olive" : "bg-pink"} text-shadow-lg border-2 w-[10px] rounded-full aspect-square sm:w-4 sm:border-4 lg:w-5`;
-  const counterClass = `time-left w-full text-center text-stroke text-shadow-lg font-bold leading-[1] tracking-wider uppercase font-display text-4xl sm:text-6xl md:text-7xl xl:text-8xl 2xl:text-9xl ${style === "landing" ? "text-olive" : "text-pink"}`;
-  const formatClass = "w-full text-center font-bold leading-[1.33] tracking-wider uppercase font-sans text-xl sm:text-3xl";
+  const counterClass = `${typography.h1} ${typography.blockLarge} w-full text-center !leading-none 2xl:text-9xl ${style === "landing" ? "text-olive" : "text-pink"}`;
 
   return (
     <section
@@ -63,9 +63,9 @@ export default function Countdown({ countdownDate, countdownText, style = "home"
     >
       <div className="py-10 px-4 md:py-12 md:px-8 xl:px-20">
         {countdownText && (
-          <h2 className="text-center font-display font-bold leading-[1.33] tracking-wider uppercase text-2xl mb-4 sm:mb-8 sm:text-4xl">
+          <h3 className={`${typography.h4} text-center mb-6`}>
             {countdownText}
-          </h2>
+          </h3>
         )}
 
         {/* Timer digits */}
@@ -95,9 +95,9 @@ export default function Countdown({ countdownDate, countdownText, style = "home"
         <div
           className="w-full flex items-center mt-2 gap-[10px] sm:gap-4 lg:gap-5 justify-center"
         >
-          <p className={formatClass}>Days</p>
-          <p className={formatClass}>Hours</p>
-          <p className={formatClass}>Minutes</p>
+          <h6 className={`${typography.h5} w-full text-center`}>Days</h6>
+          <h6 className={`${typography.h5} w-full text-center`}>Hours</h6>
+          <h6 className={`${typography.h5} w-full text-center`}>Minutes</h6>
         </div>
       </div>
     </section>

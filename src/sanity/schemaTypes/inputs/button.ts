@@ -11,6 +11,7 @@ export const buttonFields = [
     name: "url",
     title: "URL",
     type: "string",
+    validation: (Rule) => Rule.required(),
   }),
   defineField({
     title: 'Button Style',

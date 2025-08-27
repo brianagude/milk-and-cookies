@@ -36,7 +36,7 @@ export default function Header({ logo }: HeaderProps) {
 
 	return (
 		<header
-			className="fixed top-0 w-full pt-2 pb-3 z-50 pointer-events-none sm:pt-4 sm:pb-5 transition-transform duration-500 ease-out"
+			className="fixed top-0 w-full pt-2 pb-3 z-50 sm:pt-4 sm:pb-5 transition-transform duration-500 ease-out"
 			style={{ transform: `translateY(${translateY}%)` }}
 		>
 			<div className="w-full max-w-[1728px] mx-auto px-4 flex items-center justify-center">

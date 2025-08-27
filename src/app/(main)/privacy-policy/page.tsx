@@ -1,33 +1,13 @@
-// import { client } from "@/sanity/lib/client";
-// import { notFound } from "next/navigation";
-// import HeroSection from "@/components/Hero"
-// import NewsletterSection from "@/components/Newsletter"
 import FinalCallout from "@/components/FinalCallout";
-// import Divider from "@/components/Divider"
 import { spacing, typography } from "@/styles/design-tokens";
 
-// const query = `*[_type == "landing"][0]{
-//   ...
-// }`;
-
-// const options = { next: { revalidate: 30 } };
-
 export default async function PrivacyPolicy() {
-	// const data = await client.fetch(
-	//   query,
-	//   {},
-	//   options,
-	// );
-
-	// if (!data) return notFound()
-
-	// const { hero, newsletter, divider, finalCallout } = data || {}
 
 	return (
 		<>
 			<section className={spacing.section}>
 				<div className={`${spacing.container} mt-10`}>
-					<div className="bg-cream rounded-4xl max-w-screen-lg mx-auto w-full space-y-6 py-10 px-4 sm:px-6 sm:py-12 md:space-y-8 md:px-8 md:py-16 lg:px-20">
+					<div className="bg-cream border-4 max-w-screen-lg mx-auto w-full space-y-6 py-10 px-4 sm:px-6 sm:py-12 md:space-y-8 md:px-8 md:py-16 lg:px-20">
 						<h2 className={`${typography.h2} text-center`}>Privacy Policy</h2>
 						<div className="flex flex-col gap-2">
 							<h6 className={typography.h6}>PERSONAL INFORMATION WE COLLECT</h6>
@@ -234,10 +214,6 @@ export default async function PrivacyPolicy() {
 					</div>
 				</div>
 			</section>
-			{/* {hero && <HeroSection {...hero} />}
-      {newsletter && <NewsletterSection {...newsletter} />}
-      {divider && <Divider {...divider} />}
-      {finalCallout && <FinalCallout {...finalCallout} />} */}
 			<FinalCallout />
 		</>
 	);

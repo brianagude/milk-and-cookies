@@ -16,18 +16,15 @@ const query = `*[_type == "landing"][0]{
 
 const options = { next: { revalidate: 30 } };
 
-export default async function IndexPage() {
+export default async function SignUpPage() {
 	const data = await client.fetch(query, {}, options);
 
 	if (!data) return notFound();
 
 	const { hero, newsletter, divider, finalCallout, countdown } = data || {};
-	console.log('countdown: ',countdown )
-	
-
 	return (
 		<>
-			{hero && <HeroSection {...hero} />}
+			{hero && <HeroSection {...hero} style="landing" />}
 			{countdown && <Countdown {...countdown} style="landing" />}
 			{newsletter && <NewsletterSection {...newsletter} />}
 			{divider && <Divider {...divider} />}

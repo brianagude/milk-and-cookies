@@ -1,11 +1,11 @@
 // components/HeroSection.jsx
 
-import { PortableText } from "@portabletext/react";
 import type { SanityImageAsset } from "@types";
 import Image from "next/image";
-import type { PortableTextComponents } from "next-sanity";
 import { urlFor } from "@/sanity/lib/image";
-import { spacing } from "@/styles/design-tokens";
+import { spacing, typography } from "@/styles/design-tokens";
+import { BlockContent } from "./inputs/PortableTextComponents";
+import Button from "./inputs/Button";
 
 export type SimpleBlockContent = Array<{
 	children?: Array<{
@@ -27,64 +27,55 @@ export type SimpleBlockContent = Array<{
 }>;
 
 interface HeroSectionProps {
+	style?: string;
 	headline1: string;
 	headline2?: string;
-	subheadline1?: string;
-	subheadline2?: SimpleBlockContent;
+	subheadline?: SimpleBlockContent;
 	backgroundImage?: SanityImageAsset;
 }
-
-const portableTextComponents: PortableTextComponents = {
-	block: {
-		normal: ({ children }) => (
-			<h6 className="text-stroke text-shadow-sm mt-2 text-cream font-bold leading-[1.33] tracking-wider uppercase font-sans text-lg sm:text-2xl xl:text-3xl">
-				{children}
-			</h6>
-		),
-	},
-};
 
 export default function HeroSection({
 	headline1,
 	headline2,
-	subheadline1,
-	subheadline2,
+	subheadline,
 	backgroundImage,
+	buttons,
+	style
 }: HeroSectionProps) {
-	// If no main content provided, render nothing
-	if (!headline1 && !headline2 && !subheadline1 && !subheadline2) return null;
+	if (!headline1 && !headline2 && !subheadline) return null;
 
 	return (
-		<section
-			className={`${spacing.section} min-h-svh !pt-28 sm:!pt-40 relative`}
-		>
+		<section className={`${spacing.section} min-h-svh !pt-28 sm:!pt-40 relative`}>
 			<div className={`${spacing.container} relative z-20`}>
 				<div className="text-block w-full flex flex-col items-center justify-center text-center">
 					{headline1 && (
-						<h1 className="text-stroke text-shadow-lg text-pink font-bold leading-[1.33] tracking-wider uppercase font-display rotate-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl">
+						<h1 
+							className={`
+								${style === "landing" ? `${typography.h1} rotate-2 text-pink` : `${typography.h2} text-blue`}  ${typography.blockLarge} 
+						`}>
 							{headline1}
 						</h1>
 					)}
 					{headline2 && (
-						<h2 className="text-stroke text-shadow-lg text-olive font-bold leading-[1.33] tracking-wider uppercase font-display -rotate-2 text-4xl sm:text-5xl md:text-6xl xl:text-7xl">
+						<h2 
+							className={`
+								${style === "landing" ? `${typography.h1} -rotate-2` : typography.h2} ${typography.h1} ${typography.blockLarge} text-olive
+							`}>
 							{headline2}
 						</h2>
 					)}
-					{subheadline1 && (
-						<h3 className="text-stroke text-shadow-sm mt-3 text-blue font-bold leading-[1.33] tracking-wider uppercase font-sans text-xl sm:text-3xl xl:text-5xl">
-							{subheadline1}
-						</h3>
-					)}
-					{subheadline2 && (
-						// <h4 className="text-stroke text-shadow-sm mt-2 text-cream font-bold leading-[1.33] tracking-wider uppercase font-sans text-lg sm:text-2xl xl:text-3xl">
-						//   {subheadline2}
-						// </h4>
-						<PortableText
-							value={subheadline2}
-							components={portableTextComponents}
+					{subheadline && (
+						<BlockContent
+							value={subheadline}
 						/>
 					)}
 				</div>
+
+				{Array.isArray(buttons) && buttons.length > 0 && (
+					<div className="flex flex-col gap-4 items-center justify-center md:flex-row md:flex-wrap">
+						{buttons.map((btn) => (<Button key={btn._key} {...(btn)} />))}
+					</div>
+				)}
 			</div>
 
 			{backgroundImage && (
@@ -100,14 +91,16 @@ export default function HeroSection({
 				</div>
 			)}
 
-			<div className="absolute bottom-0 left-0 w-full z-10 h-12 sm:h-20 md:h-24">
-				<Image
-					src="/wave.png"
-					fill
-					alt=""
-					className="object-bottom-center object-cover"
-				/>
-			</div>
+			{style === "landing" && 
+				<div className="absolute bottom-0 left-0 w-full z-10 h-12 sm:h-20 md:h-24">
+					<Image
+						src="/wave.png"
+						fill
+						alt=""
+						className="object-bottom-center object-cover"
+					/>
+				</div>
+			}
 		</section>
 	);
 }

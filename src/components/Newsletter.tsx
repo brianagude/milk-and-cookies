@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { buttons, forms, spacing } from "@/styles/design-tokens";
+import { buttons, forms, spacing, typography } from "@/styles/design-tokens";
 
 interface NewsletterProps {
-	actionUrl: string;
+	actionUrl?: string;
 	buttonText?: string;
 	disclaimerText?: string;
 	backgroundColor?: string;
@@ -46,6 +46,8 @@ export default function Newsletter({
 }: NewsletterProps) {
 	const [agreed, setAgreed] = useState(false);
 
+	if (!actionUrl) return null
+
 	const handleSubmit = (e: React.FormEvent) => {
 		if (disclaimerText && !agreed) {
 			e.preventDefault();
@@ -60,9 +62,9 @@ export default function Newsletter({
 		<section className={`${spacing.section} ${bgColorClass} border-t-4`}>
 			<div className={spacing.container}>
 				{title && (
-					<p className="font-display uppercase text-left text-2xl sm:text-center sm:text-3xl md:text-4xl xl:text-5xl">
+					<h2 className={`${typography.h4} text-center !font-display`}>
 						{title}
-					</p>
+					</h2>
 				)}
 				<form
 					action={actionUrl}
