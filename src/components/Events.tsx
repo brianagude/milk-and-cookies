@@ -15,7 +15,7 @@ export default function Events(section) {
       ? "max-w-xl"
       : events.length === 2
       ? "max-w-6xl sm:grid-cols-2"
-      : "sm:grid-cols-2 xl:grid-cols-3";
+      : "lg:grid-cols-2 2xl:grid-cols-3";
 
   if (!events || events.length === 0) return null;
 
