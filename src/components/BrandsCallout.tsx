@@ -17,7 +17,7 @@ export default function BrandsCallout(module) {
         {(headline || subheadline) && 
           <div className="text-block w-full space-y-4 sm:text-center sm:space-y-6">
             {headline && (
-              <h2 className={typography.h4}>{headline}</h2>
+              <h2 className={typography.h3}>{headline}</h2>
             )}
             {subheadline && (
               <BlockContent

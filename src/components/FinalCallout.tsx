@@ -63,7 +63,7 @@ export default function FinalCallout({
 								{footer.email && (
 									<a
 										href={`mailto:${footer.email}`}
-										className={`${typography.body} hover:text-blue underline`}
+										className={`${typography.body} hover:text-blue underline hyphens-auto`}
 									>
 										{footer.email}
 									</a>
@@ -119,7 +119,7 @@ export default function FinalCallout({
 						<ul className="flex gap-4 items-center justify-center w-fit flex-wrap">
 							{footer.linkList.map(({ _key, url, text }) => (
 								<li key={_key}>
-									<a href={url} className={`${typography.body} hover:text-blue underline`}>{text}</a>
+									<a href={url} className={`${typography.body} hyphens-auto hover:text-blue underline`}>{text}</a>
 								</li>
 							))}
 						</ul>

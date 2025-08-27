@@ -1,18 +1,19 @@
 import { PortableTextComponents } from "next-sanity";
 import { PortableText } from "@portabletext/react";
 import type { BlockContent as BlockContentType } from "@types";
+import { typography } from "@/styles/design-tokens";
 
 
 const blockContentComponents: PortableTextComponents = {
   block: {
     h5: ({ children }) => (
-      <h5 className="text-pretty max-w-[60ch] mx-auto text-stroke text-shadow-sm mt-2 text-olive font-bold leading-[1.33] tracking-wider uppercase font-sans text-xl sm:text-2xl xl:text-3xl">{children}</h5>
+      <h5 className={`${typography.h5}`}>{children}</h5>
     ),
     h6: ({ children }) => (
-      <h6 className="text-pretty max-w-[60ch] mx-auto text-stroke text-shadow-sm mt-2 text-cream font-bold leading-[1.33] tracking-wider uppercase font-sans text-lg sm:text-2xl xl:text-3xl">{children}</h6>
+      <h6 className={`${typography.h6}`}>{children}</h6>
     ),
     normal: ({ children }) => (
-      <p className="text-pretty max-w-[60ch] mx-auto text-lg sm:text-xl lg:text-2xl">{children}</p>
+      <p className={`${typography.bodyLarge}`}>{children}</p>
     ),
   },
   list: {

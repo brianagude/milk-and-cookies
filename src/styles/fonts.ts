@@ -21,12 +21,12 @@ export const itc = localFont({
 	src: [
 		{
 			path: "/itcavantgardestd-bk.woff2",
-			weight: "400",
+			weight: "normal",
 			style: "normal",
 		},
 		{
 			path: "/itcavantgardestd-bk.woff",
-			weight: "400",
+			weight: "normal",
 			style: "normal",
 		},
 		{
@@ -41,12 +41,12 @@ export const itc = localFont({
 		},
 		{
 			path: "/itcavantgardestd-bold.woff2",
-			weight: "700",
+			weight: "bold",
 			style: "normal",
 		},
 		{
 			path: "/itcavantgardestd-bold.woff",
-			weight: "700",
+			weight: "bold",
 			style: "normal",
 		},
 	],

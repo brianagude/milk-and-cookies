@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { typography } from "@/styles/design-tokens";
 import { urlFor } from "@/sanity/lib/image";
 import { BlockContent } from "./inputs/PortableTextComponents";
 import Button from "./inputs/Button";
@@ -15,7 +16,7 @@ export default function TextCallout(module) {
         {(headline || subheadline) && 
           <div className="text-block w-full space-y-4 sm:space-y-6 lg:space-y-10">
             {headline && (
-              <h2 className="font-display uppercase text-left text-2xl sm:text-center sm:text-3xl md:text-4xl xl:text-5xl">{headline}</h2>
+              <h2 className={`${typography.h3} sm:text-center`}>{headline}</h2>
             )}
             {subheadline && (
               <BlockContent

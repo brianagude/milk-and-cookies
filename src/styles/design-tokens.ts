@@ -6,7 +6,7 @@ export const spacing = {
 };
 
 const baseHeading = `text-pretty font-bold max-w-[80ch] font-bold leading-tight tracking-wide uppercase`;
-const baseBody = `text-pretty font-sans font-semibold leading-relaxed tracking-wide text-xl max-w-[60ch]]`;
+const baseBody = `text-pretty font-sans leading-relaxed tracking-wide text-xl max-w-[60ch]]`;
 
 export const typography = {
 	h1: `${baseHeading} font-display text-4xl md:text-6xl xl:text-8xl`,
