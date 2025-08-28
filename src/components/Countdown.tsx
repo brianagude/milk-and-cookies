@@ -49,20 +49,20 @@ export default function Countdown({ countdownDate, countdownText, style = "home"
   }
 
   // Styling classes
-  const landingClass = "bg-cream border-black border-4 border-b-0";
-  const homeClass = `${spacing.section} px-4 sm:px-6 md:px-8 lg:px-20`;
+  const landingClass = "bg-cream border-b-4";
+  const homeClass = ``;
   const dotContainerClass = "space-y-1 md:space-y-2";
   const dotClass = `${style === "landing" ? "bg-olive" : "bg-pink"} text-shadow-lg border-2 w-[10px] rounded-full aspect-square sm:w-4 sm:border-4 lg:w-5`;
   const counterClass = `${typography.h2} ${typography.blockLarge} w-full text-center !leading-none 2xl:text-9xl ${style === "landing" ? "text-olive" : "text-pink"}`;
 
   return (
     <section
-      className={`${style === "landing" ? landingClass : homeClass} max-w-[1728px] mx-auto mx-auto border-l-4 border-r-4`}
+      className={`${style === "landing" ? landingClass : homeClass}`}
       aria-label={`Countdown timer until ${new Date(countdownDate).toLocaleDateString()}`}
       role="timer"
     >
       <div 
-        className={style === "landing" ? "py-10 px-4 md:py-12 md:px-8 xl:px-20" : "bg-white/60 border-4 py-10 px-4 md:py-12 md:px-8 xl:px-20"}
+        className={style === "landing" ? "py-10 px-4 md:py-12 md:px-8 xl:px-40" : "bg-white/60 border-4 py-10 px-4 md:py-12 md:px-8 xl:px-20"}
       >
         {countdownText && (
           <h3 className={`${typography.h4} text-center mb-6`}>

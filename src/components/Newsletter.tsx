@@ -38,7 +38,7 @@ const getBackgroundColorClass = (backgroundColor?: string): string => {
 };
 
 export default function Newsletter({
-	actionUrl = "https://milkandcookiesfestival.us21.list-manage.com/subscribe/post?u=dd0a4903ee93a291eb0eb77fc&amp;id=a57c276c6e&amp;f_id=009383e6f0",
+	actionUrl,
 	buttonText,
 	disclaimerText,
 	backgroundColor,
@@ -59,7 +59,7 @@ export default function Newsletter({
 	const bgColorClass = getBackgroundColorClass(backgroundColor);
 
 	return (
-		<section className={`${spacing.section} ${bgColorClass} border-t-4`}>
+		<section className={`${spacing.section} ${bgColorClass} border-b-4`}>
 			<div className={spacing.container}>
 				{title && (
 					<h2 className={`${typography.h4} text-center !font-display`}>

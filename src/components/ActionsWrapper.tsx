@@ -5,16 +5,17 @@ import Countdown from "./Countdown";
 import Events from "./Events";
 import Products from "./Products";
 import Video from "./inputs/Video";
+import { spacing } from "@/styles/design-tokens";
 
 export default function ActionsWrapper(module) {
   const { backgroundImage, sections, backgroundVideo } = module
   // console.log(module)
 
   return (
-    <section className="relative scroll-mt-2 max-w-[1728px] mx-auto border-4 border-b-0">
-      <div className="relative z-20">
+    <section className={spacing.section}>
+      {/* <div className={`relative z-20 ${spacing.container}`}> */}
         {sections && (
-          <div className="section-wrapper">
+          <div className={`${spacing.container} relative z-20 !space-y-16 md:!space-y-20`}>
             {sections.map((section) => {
               switch (section._type) {
                 case "countdown":
@@ -29,7 +30,7 @@ export default function ActionsWrapper(module) {
             })}
           </div>
         )}
-      </div>
+      {/* </div> */}
 
       {backgroundImage && (
         <div className="absolute inset-0 z-10">

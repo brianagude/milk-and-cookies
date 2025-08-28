@@ -18,6 +18,7 @@ export const landing = defineType({
 					type: "image",
 					options: {
 						hotspot: true,
+						
 					},
 					fields: [
 						defineField({

@@ -26,7 +26,7 @@ export default function FinalCallout({
 
 	return (
 		<>
-			<section className="relative scroll-mt-2 pt-28 max-w-[1728px] mx-auto border-l-4 border-r-4 sm:pt-40">
+			<section className="relative scroll-mt-2 pt-28 sm:pt-40">
 				<div
 					className={`${spacing.container} flex-col items-center relative z-20 pb-10`}
 				>
@@ -63,7 +63,7 @@ export default function FinalCallout({
 								{footer.email && (
 									<a
 										href={`mailto:${footer.email}`}
-										className={`${typography.body} hover:text-blue underline hyphens-auto`}
+										className={`${typography.body} hover:text-pink underline hyphens-auto`}
 									>
 										{footer.email}
 									</a>
@@ -82,6 +82,7 @@ export default function FinalCallout({
 											alt={platform || "social icon"}
 											width={24}
 											height={24}
+											className="hover:-translate-y-1 transition-transform"
 										/>
 									</a>
 								</li>
@@ -110,7 +111,7 @@ export default function FinalCallout({
 					</div>
 				)}
 			</section>
-			<footer className="py-3 bg-cream max-w-[1728px] border-4 border-t-0 mx-auto">
+			<footer className="py-3 bg-cream">
 				<div className="w-full px-4 flex flex-col items-center justify-center text-center gap-3 sm:flex-row sm:justify-between">
 					<p className={`${typography.body} sm:ml-0`}>
 						&copy;{year} {footer.copyrightText && footer.copyrightText}
@@ -119,7 +120,7 @@ export default function FinalCallout({
 						<ul className="flex gap-4 items-center justify-center w-fit flex-wrap">
 							{footer.linkList.map(({ _key, url, text }) => (
 								<li key={_key}>
-									<a href={url} className={`${typography.body} hyphens-auto hover:text-blue underline`}>{text}</a>
+									<a href={url} className={`${typography.body} hyphens-auto hover:text-pink underline`}>{text}</a>
 								</li>
 							))}
 						</ul>

@@ -1,8 +1,8 @@
 export const spacing = {
 	section:
-		"relative scroll-mt-2 py-16 max-w-[1728px] mx-auto border-l-4 border-r-4 md:py-20 lg:py-32",
+		"relative scroll-mt-2 border-b-4 py-16 md:py-20 lg:py-32",
 	container:
-		"w-full max-w-[1728px] mx-auto px-4 flex flex-col space-y-12 sm:px-6 md:space-y-16 md:px-8 lg:px-20",
+		"w-full px-4 flex flex-col space-y-12 sm:px-6 md:space-y-16 md:px-8 lg:px-20",
 };
 
 const baseHeading = `text-pretty font-bold max-w-[80ch] font-bold leading-tight tracking-wide uppercase`;
@@ -10,7 +10,7 @@ const baseBody = `text-pretty font-sans leading-relaxed tracking-wide text-xl ma
 
 export const typography = {
 	h1: `${baseHeading} font-display text-3xl md:text-6xl xl:text-8xl`,
-	h2: `${baseHeading} font-display text-3xl md:text-5xl xl:text-7xl`,
+	h2: `${baseHeading} font-display text-4xl md:text-5xl xl:text-7xl`,
 	h3: `${baseHeading} font-display text-3xl md:text-4xl xl:text-5xl`,
 	h4: `${baseHeading} font-sans text-3xl md:text-4xl `,
 	h5: `${baseHeading} font-sans text-2xl md:text-3xl`,

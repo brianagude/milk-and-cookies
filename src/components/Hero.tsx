@@ -2,6 +2,7 @@
 
 import type { SanityImageAsset } from "@types";
 import Image from "next/image";
+import SanityImageComponent from "./inputs/SanityImage";
 import { urlFor } from "@/sanity/lib/image";
 import { spacing, typography } from "@/styles/design-tokens";
 import { ChunkyBlockContent } from "./inputs/PortableTextComponents";
@@ -49,7 +50,7 @@ export default function HeroSection({
 	if (!headline1 && !headline2 && !backgroundImage && !playbackId) return null;
 
 	return (
-		<section className={`${spacing.section} ${style === "landing" ? "" : "flex flex-col items-center justify-center"} min-h-svh relative !pt-28 sm:!pt-40`}>
+		<section className={`${spacing.section} ${style === "landing" ? "" : "flex flex-col items-center justify-center"} bg-black min-h-svh relative !pt-28 sm:!pt-40`}>
 			<div className={`${spacing.container} relative z-20`}>
 				<div className="text-block w-full flex flex-col items-center justify-center text-center">
 					{kicker && (
@@ -97,7 +98,16 @@ export default function HeroSection({
 						fill
 						className="object-cover"
 						priority
+						placeholder="blur"
+  					blurDataURL={backgroundImage.asset.metadata.lqip}
 					/>
+					{/* <SanityImageComponent
+						sanityImage={backgroundImage}
+						alt={backgroundImage.altText || "Crowd at Milk & Cookies Fest"}
+						fill
+						classes="object-cover"
+						priority
+					/> */}
 					<div className="absolute inset-0 bg-black/10" />
 				</div>
 			)}

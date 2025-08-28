@@ -9,6 +9,19 @@ import { client } from "@/sanity/lib/client";
 const query = `*[_type == "landing"][0]{
   hero {
   ...,
+	"backgroundImage": backgroundImage{
+    alt,
+    crop,
+    hotspot,
+    asset->{
+      _id,
+      url,
+      metadata {
+        lqip,
+        dimensions
+      }
+    }
+  },
   "playbackId": backgroundVideo.asset->playbackId,
   },
 	newsletter,
@@ -25,6 +38,7 @@ export default async function SignUpPage() {
 	if (!data) return notFound();
 
 	const { hero, newsletter, divider, finalCallout, countdown } = data || {};
+	console.log('hero: ', hero)
 	return (
 		<>
 			{hero && <HeroSection {...hero} style="landing" />}

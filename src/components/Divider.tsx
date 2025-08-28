@@ -19,7 +19,7 @@ export default function Divider({ backgroundImage }: DividerProps) {
 			width={1728}
 			height={176}
 			alt="decorative banner"
-			className="object-cover border-black border-4 mx-auto"
+			className="object-cover border-b-4 border-black"
 		/>
 		// </div>
 	);
