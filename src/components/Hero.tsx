@@ -111,7 +111,7 @@ export default function HeroSection({
 				/>
 			}
 
-			{/* {style === "landing" &&  */}
+			{style === "landing" && 
 				<div className="absolute bottom-0 left-0 w-full z-10 h-12 sm:h-20 md:h-24">
 					<Image
 						src="/wave.png"
@@ -120,7 +120,7 @@ export default function HeroSection({
 						className="object-bottom-center object-cover"
 					/>
 				</div>
-			{/* } */}
+			}
 		</section>
 	);
 }

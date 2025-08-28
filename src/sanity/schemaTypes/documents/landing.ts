@@ -67,37 +67,8 @@ export const landing = defineType({
 						}),
 					]
 				}),
-				defineField({
-					name: "subheadline1",
-					title: "Subheadline 1",
-					type: "text",
-					rows: 2,
-				}),
-				defineField({
-					name: "subheadline2",
-					title: "Subheadline 2",
-					type: "array",
-					of: [
-						{
-							type: "block",
-							styles: [{ title: "Normal", value: "normal" }],
-						},
-					],
-				}),
 			],
 		}),
-		defineField({
-      name: 'body',
-      title: 'Body',
-      type: 'array',
-      of: [
-        {type: 'brandsCallout'},
-        {type: 'countdown'},
-        {type: 'marquee'},
-        {type: 'newsletter'},
-        {type: 'textCallout'},
-      ],
-    }),
 		defineField({
 			name: "countdown",
 			title: "Countdown Section",
@@ -128,6 +99,7 @@ export const landing = defineType({
 					name: "actionUrl",
 					title: "Mailchimp Form URL",
 					type: "string",
+					validation: (Rule) => Rule.required(),
 				}),
 				defineField({
 					name: "title",

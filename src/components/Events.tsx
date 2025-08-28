@@ -5,6 +5,7 @@ import { Drawer } from "vaul";
 import Button from "./inputs/Button";
 import { useState } from "react";
 import { BlockContent } from "./inputs/PortableTextComponents";
+import Image from "next/image"
 
 export default function Events(section) {
   const { headline, events } = section;
@@ -15,12 +16,12 @@ export default function Events(section) {
       ? "max-w-xl"
       : events.length === 2
       ? "max-w-6xl sm:grid-cols-2"
+      : events.length === 4
+      ? "max-w-6xl sm:grid-cols-2"
       : "lg:grid-cols-2 2xl:grid-cols-3";
 
   if (!events || events.length === 0) return null;
-
-
-
+  
   return (
     <Drawer.Root open={!!selectedEvent} onOpenChange={(open) => !open && setSelectedEvent(null)}>
       <section className={spacing.section} id="events">
@@ -39,27 +40,56 @@ export default function Events(section) {
 
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40 z-40" />
-        <Drawer.Content className="z-50 bg-cream flex flex-col mt-24 h-4/5 fixed bottom-0 left-0 right-0 outline-none">
-          <div className="p-4 bg-white flex-1">
-            <div aria-hidden className="mx-auto w-12 h-1.5 flex-shrink-0 bg-gray-300 mb-8" />
-
-            <div className="max-w-md mx-auto space-y-4">
-              <Drawer.Close asChild>
-                <button type="button" className={`${typography.h6} cursor-pointer`}>
-                  Close
-                </button>
-              </Drawer.Close>
+        <Drawer.Content className="z-50 flex flex-col h-full fixed bottom-0 left-0 right-0 outline-none">
+          <div className="p-2 !pb-0 flex-1 sm:p-10">
+            <div className="w-full h-full space-y-4 bg-white p-4 border-4 border-b-0">
+              {/* <div aria-hidden className="mx-auto w-12 h-1.5 flex-shrink-0 bg-black rounded-sm mb-8" /> */}
+              <div className="w-full flex justify-end mb-8 sm:mb-12">
+                <Drawer.Close asChild>
+                  <button type="button" className={`${typography.h6} cursor-pointer`}>
+                    Close
+                  </button>
+                </Drawer.Close>
+              </div>
 
               {selectedEvent && selectedEvent.info && (
-                <div className="overflow-scroll">
-                  <div className="space-y-1 flex-1">
-                    <Drawer.Title className={`${typography.h4} !font-display`}>{selectedEvent.name}</Drawer.Title>
-                    {selectedEvent.description && !selectedEvent.info.subheadline && (
-                      <p className={`${typography.body}`}>{selectedEvent.description}</p>
-                    )}
-                    {selectedEvent.info.subheadline && (
-                      <BlockContent value={selectedEvent.info.subheadline}/>
-                    )}
+                <div className="overflow-scroll max-w-5xl mx-auto">
+                  <div className="flex-1 space-y-5 sm:space-y-8 lg:space-y-12">
+                    <div>
+                      <Drawer.Title className={`${typography.h4} !font-display`}>{selectedEvent.name}</Drawer.Title>
+                      {selectedEvent.description && !selectedEvent.info.subheadline && (
+                        <p className={`${typography.body}`}>{selectedEvent.description}</p>
+                      )}
+                      {selectedEvent.info.subheadline && (
+                        <BlockContent value={selectedEvent.info.subheadline} />
+                      )}
+                    </div>
+
+                    <Button
+                      url={selectedEvent.link}
+                      style="secondary"
+                      text="get tickets"
+                      classes="!w-full"
+                    />
+
+                    {selectedEvent.info.details && 
+                      <div className="space-y-6">
+                        {selectedEvent.info.details.map((detail)=>(
+                          <div key={detail._key} className="border-4">
+                            <div className="flex gap-3 items-center justify-between p-6 pb-4 ">
+                              <h5 className={typography.h6}>{detail.caption}</h5>
+                              <Image src="/plus.svg" height={24} width={24} alt="plus icon"/>
+                              <Image src="/minus.svg" height={8} width={24} alt="minus icon"/>
+                            </div>
+                            <div className="p-6 pt-4">
+                              <BlockContent value={detail.content}/>
+                            </div>
+                          </div>
+
+                        ))}
+                      </div>
+                    }
+
                   </div>
                 </div>
               )}
@@ -73,6 +103,8 @@ export default function Events(section) {
 
 // Event card with Learn More
 function EventCard({ event, onLearnMore }) {
+  console.log('event: ', event.info)
+
   return (
     <div
       key={event._key}
@@ -99,7 +131,7 @@ function EventCard({ event, onLearnMore }) {
       </div>
 
       <div className="space-y-3">
-        {/* {event.info && (
+        {event.info && (
           <Drawer.Trigger asChild>
             <button
               type="button"
@@ -109,11 +141,11 @@ function EventCard({ event, onLearnMore }) {
               Learn More
             </button>
           </Drawer.Trigger>
-        )} */}
+        )}
         <Button
           url={event.link}
           style="secondary"
-          text="buy tickets"
+          text="get tickets"
           classes="!w-full"
         />
       </div>
