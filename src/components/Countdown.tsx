@@ -1,9 +1,10 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { typography } from "@/styles/design-tokens";
 
 type CountdownProps = {
-	countdownDate: string;
+	countdownDate: string; // required
 	countdownText?: string;
 	style?: "landing" | "home";
 };
@@ -15,20 +16,18 @@ type TimeLeft = {
 };
 
 const calculateTimeLeft = (date: string): TimeLeft => {
-	const targetDate = new Date(date).getTime();
-	if (Number.isNaN(targetDate)) return { days: 0, hours: 0, minutes: 0 };
+	const targetTime = new Date(date).getTime();
+	if (isNaN(targetTime)) return { days: 0, hours: 0, minutes: 0 };
 
 	const now = Date.now();
-	const difference = targetDate - now;
+	const diff = targetTime - now;
 
-	if (difference <= 0) {
-		return { days: 0, hours: 0, minutes: 0 };
-	}
+	if (diff <= 0) return { days: 0, hours: 0, minutes: 0 };
 
 	return {
-		days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-		hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-		minutes: Math.floor((difference / (1000 * 60)) % 60),
+		days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+		hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+		minutes: Math.floor((diff / (1000 * 60)) % 60),
 	};
 };
 
@@ -37,6 +36,9 @@ export default function Countdown({
 	countdownText,
 	style = "home",
 }: CountdownProps) {
+	// Validate date upfront
+	if (!countdownDate || isNaN(new Date(countdownDate).getTime())) return null;
+
 	const [timeLeft, setTimeLeft] = useState<TimeLeft>(() =>
 		calculateTimeLeft(countdownDate),
 	);
@@ -49,21 +51,18 @@ export default function Countdown({
 		return () => clearInterval(timer);
 	}, [countdownDate]);
 
-	// Validate input date
-	if (!countdownDate || Number.isNaN(new Date(countdownDate).getTime())) {
-		return null;
-	}
-
-	// Styling classes
+	// Classes
 	const landingClass = "bg-cream border-b-4";
-	const homeClass = ``;
+	const homeClass = "";
 	const dotContainerClass = "space-y-1 md:space-y-2";
 	const dotClass = `${style === "landing" ? "bg-olive" : "bg-pink"} text-shadow-lg border-2 w-[10px] rounded-full aspect-square sm:w-4 sm:border-4 lg:w-5`;
-	const counterClass = `${typography.h2} ${typography.blockLarge} w-full text-center !leading-none 2xl:text-9xl ${style === "landing" ? "text-olive" : "text-pink"}`;
+	const counterClass = `${typography.h2} ${typography.blockLarge} w-full text-center !leading-none 2xl:text-9xl ${
+		style === "landing" ? "text-olive" : "text-pink"
+	}`;
 
 	return (
 		<section
-			className={`${style === "landing" ? landingClass : homeClass}`}
+			className={style === "landing" ? landingClass : homeClass}
 			aria-label={`Countdown timer until ${new Date(countdownDate).toLocaleDateString()}`}
 			role="timer"
 		>
@@ -81,10 +80,7 @@ export default function Countdown({
 				)}
 
 				{/* Timer digits */}
-				<div
-					className="flex items-center w-full justify-center"
-					aria-hidden="true"
-				>
+				<div className="flex items-center w-full justify-center" aria-hidden="true">
 					<time className={counterClass} dateTime={`${timeLeft.days}D`}>
 						{timeLeft.days}
 					</time>
