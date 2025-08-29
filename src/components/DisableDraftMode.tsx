@@ -19,7 +19,7 @@ export function DisableDraftMode() {
 		});
 
 	return (
-		<div>
+		<div className="relative z-50">
 			{pending ? (
 				"Disabling draft mode..."
 			) : (

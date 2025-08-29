@@ -5,8 +5,8 @@ import { typography } from "@/styles/design-tokens";
 
 const blockContentComponents: PortableTextComponents = {
 	block: {
-		h5: ({ children }) => <h5 className={`${typography.h5}`}>{children}</h5>,
-		h6: ({ children }) => <h6 className={`${typography.h6}`}>{children}</h6>,
+		h5: ({ children }) => <h5 className={`${typography.h5} mb-4`}>{children}</h5>,
+		h6: ({ children }) => <h6 className={`${typography.h6} mb-4`}>{children}</h6>,
 		normal: ({ children }) => (
 			<p className={`${typography.bodyLarge}`}>{children}</p>
 		),
@@ -48,12 +48,12 @@ export const BlockContent = ({
 const chunkyBlockContentComponents: PortableTextComponents = {
 	block: {
 		h5: ({ children }) => (
-			<h5 className={`${typography.h4} ${typography.blockSmall} text-blue mt-4`}>
+			<h5 className={`${typography.h4} ${typography.blockSmall} text-blue mb-4`}>
 				{children}
 			</h5>
 		),
 		h6: ({ children }) => (
-			<h6 className={`${typography.h5} ${typography.blockSmall} text-olive mt-4`}>
+			<h6 className={`${typography.h5} ${typography.blockSmall} text-olive mb-4`}>
 				{children}
 			</h6>
 		),
@@ -88,10 +88,10 @@ export const ChunkyBlockContent = ({
 	classes,
 }: {
 	value: BlockContentType;
-	classes: string;
+	classes?: string;
 }) => {
 	return (
-		<div className={`space-y-3 ${classes}`}>
+		<div className={`space-y-2 mt-4 ${classes}`}>
 			<PortableText value={value} components={chunkyBlockContentComponents} />
 		</div>
 	);

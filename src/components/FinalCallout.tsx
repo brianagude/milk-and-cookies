@@ -2,6 +2,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
 import type { ExpandedSanityImage } from "@/sanity/lib/types";
 import { spacing, typography } from "@/styles/design-tokens";
@@ -58,14 +59,16 @@ export default function FinalCallout({
 
 					{(logoUrl || footer) && (
 						<div className="text-cream text-center space-y-8">
-							<Image
-								src={logoUrl}
-								width={280}
-								height={120}
-								alt="milk and cookies logo"
-								priority
-								className="mx-auto"
-							/>
+							<Link href="/" className="block">
+								<Image
+									src={logoUrl}
+									width={280}
+									height={120}
+									alt="milk and cookies logo"
+									priority
+									className="mx-auto"
+								/>
+							</Link>
 
 							{(footer.subtext || footer.email) && (
 								<div className="space-y-3">

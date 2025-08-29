@@ -57,8 +57,8 @@ export default function Events({ headline, events = [] }: EventsType) {
 				<Drawer.Overlay className="fixed inset-0 bg-black/40 z-40" />
 				<Drawer.Content className="z-50 flex flex-col h-full fixed bottom-0 left-0 right-0 outline-none">
 					<div className="p-2 !pb-0 flex-1 flex items-end sm:p-10">
-						<div className="w-full h-full max-h-[90vh] overflow-auto bg-white p-4 border-4 border-b-0 lg:p-10">
-							<div className="w-full flex justify-end mb-8 sm:mb-12">
+						<div className="relative w-full h-full max-h-[90vh] overflow-auto bg-white p-4 pt-12 border-4 border-b-0 lg:p-10 lg:pt-24">
+							<div className="w-fit absolute top-4 right-4 lg:top-10 lg:right-10">
 								<Drawer.Close asChild>
 									<button
 										type="button"
@@ -141,7 +141,7 @@ function Accordion({ details = [] }: { details: DetailType[] }) {
 							height={24}
 							width={24}
 							alt={openIndex === idx ? "Collapse section" : "Expand section"}
-							className="w-4 h-4 sm:w-auto h-auto"
+							className="w-4 h-4 sm:w-auto sm:h-auto"
 						/>
 					</button>
 

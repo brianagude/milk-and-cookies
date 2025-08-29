@@ -1,7 +1,4 @@
 import type { Metadata } from "next";
-import { draftMode } from "next/headers";
-import { VisualEditing } from "next-sanity";
-import { DisableDraftMode } from "@/components/DisableDraftMode";
 import { catalpa, itc } from "@/styles/fonts";
 import "@/styles/globals.css";
 
@@ -53,19 +50,13 @@ export default async function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const { isEnabled } = await draftMode();
 	return (
 		<html
 			lang="en"
 			className={`${catalpa.variable} ${itc.variable} antialiased`}
 		>
 			<body>{children}</body>
-			{isEnabled && (
-				<>
-					<VisualEditing />
-					<DisableDraftMode />
-				</>
-			)}
+			
 		</html>
 	);
 }

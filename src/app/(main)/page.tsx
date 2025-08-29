@@ -9,6 +9,7 @@ import Marquee from "@/components/Marquee";
 import NewsletterSection from "@/components/Newsletter";
 import TextCallout from "@/components/TextCallout";
 import { client } from "@/sanity/lib/client";
+import { draftMode } from "next/headers";
 
 const query = `*[_type == "home"][0]{
 	hero {
@@ -22,10 +23,24 @@ const query = `*[_type == "home"][0]{
   }
 }`;
 
-const options = { next: { revalidate: 30 } };
-
-export default async function Home() {
-	const data = await client.fetch<Home>(query, {}, options);
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const { isEnabled } = await draftMode();
+  const data = await client.fetch<Home>(
+    query,
+    { slug },
+    isEnabled
+      ? {
+          perspective: "previewDrafts",
+          useCdn: false,
+          stega: true,
+        }
+      : undefined
+  );
 	if (!data) return notFound();
 	const { hero, sections, divider, finalCallout } = data || {};
 

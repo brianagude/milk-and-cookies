@@ -70,7 +70,7 @@ export default function HeroSection({
 						</h2>
 					)}
 					{subheadline && (
-						<ChunkyBlockContent value={subheadline} classes="mt-6 space-y-2" />
+						<ChunkyBlockContent value={subheadline} />
 					)}
 				</div>
 
