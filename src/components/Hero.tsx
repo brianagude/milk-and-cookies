@@ -2,11 +2,10 @@
 
 import type { SanityImageAsset } from "@types";
 import Image from "next/image";
-import SanityImageComponent from "./inputs/SanityImage";
 import { urlFor } from "@/sanity/lib/image";
 import { spacing, typography } from "@/styles/design-tokens";
-import { ChunkyBlockContent } from "./inputs/PortableTextComponents";
 import Button from "./inputs/Button";
+import { ChunkyBlockContent } from "./inputs/PortableTextComponents";
 import Video from "./inputs/Video";
 
 export type SimpleBlockContent = Array<{
@@ -45,47 +44,51 @@ export default function HeroSection({
 	buttons,
 	style,
 	playbackId,
-	kicker
+	kicker,
 }: HeroSectionProps) {
 	if (!headline1 && !headline2 && !backgroundImage && !playbackId) return null;
 
 	return (
-		<section className={`${spacing.section} ${style === "landing" ? "" : "flex flex-col items-center justify-center"} bg-black min-h-svh relative !pt-28 sm:!pt-40`}>
+		<section
+			className={`${spacing.section} ${style === "landing" ? "" : "flex flex-col items-center justify-center"} bg-black min-h-svh relative !pt-28 sm:!pt-40`}
+		>
 			<div className={`${spacing.container} relative z-20`}>
 				<div className="text-block w-full flex flex-col items-center justify-center text-center">
 					{kicker && (
-						<h6 
-							className={`${typography.h4}  ${typography.blockLarge} text-cream mb-4`}>
+						<h6
+							className={`${typography.h4}  ${typography.blockLarge} text-cream mb-4`}
+						>
 							{kicker}
 						</h6>
 					)}
 					{headline1 && (
-						<h1 
+						<h1
 							className={`
 								${style === "landing" ? `${typography.h2} rotate-2 text-pink` : `${typography.h2} text-blue`}  ${typography.blockLarge} 
-						`}>
+						`}
+						>
 							{headline1}
 						</h1>
 					)}
 					{headline2 && (
-						<h2 
+						<h2
 							className={`
 								${style === "landing" ? `${typography.h2} -rotate-2` : typography.h2} ${typography.blockLarge} text-olive
-							`}>
+							`}
+						>
 							{headline2}
 						</h2>
 					)}
 					{subheadline && (
-						<ChunkyBlockContent
-							value={subheadline}
-							classes="mt-6 space-y-2"
-						/>
+						<ChunkyBlockContent value={subheadline} classes="mt-6 space-y-2" />
 					)}
 				</div>
 
 				{Array.isArray(buttons) && buttons.length > 0 && (
 					<div className="flex flex-col gap-4 items-center justify-center md:flex-row md:flex-wrap">
-						{buttons.map((btn) => (<Button key={btn._key} {...(btn)} />))}
+						{buttons.map((btn) => (
+							<Button key={btn._key} {...btn} />
+						))}
 					</div>
 				)}
 			</div>
@@ -99,7 +102,7 @@ export default function HeroSection({
 						className="object-cover"
 						priority
 						placeholder="blur"
-  					blurDataURL={backgroundImage.asset.metadata.lqip}
+						blurDataURL={backgroundImage.asset.metadata.lqip}
 					/>
 					{/* <SanityImageComponent
 						sanityImage={backgroundImage}
@@ -112,16 +115,15 @@ export default function HeroSection({
 				</div>
 			)}
 
-			{
-				playbackId && 
+			{playbackId && (
 				<Video
 					playbackId={playbackId}
 					alt="Reel of some of our favorite projects"
 					classes="absolute inset-0 z-10"
 				/>
-			}
+			)}
 
-			{style === "landing" && 
+			{style === "landing" && (
 				<div className="absolute bottom-0 left-0 w-full z-10 h-12 sm:h-20 md:h-24">
 					<Image
 						src="/wave.png"
@@ -130,7 +132,7 @@ export default function HeroSection({
 						className="object-bottom-center object-cover"
 					/>
 				</div>
-			}
+			)}
 		</section>
 	);
 }

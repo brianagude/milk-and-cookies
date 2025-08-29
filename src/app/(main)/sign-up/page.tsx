@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
+import Countdown from "@/components/Countdown";
 import Divider from "@/components/Divider";
 import FinalCallout from "@/components/FinalCallout";
 import HeroSection from "@/components/Hero";
 import NewsletterSection from "@/components/Newsletter";
-import Countdown from "@/components/Countdown";
 import { client } from "@/sanity/lib/client";
 
 const query = `*[_type == "landing"][0]{
@@ -38,7 +38,7 @@ export default async function SignUpPage() {
 	if (!data) return notFound();
 
 	const { hero, newsletter, divider, finalCallout, countdown } = data || {};
-	console.log('hero: ', hero)
+
 	return (
 		<>
 			{hero && <HeroSection {...hero} style="landing" />}

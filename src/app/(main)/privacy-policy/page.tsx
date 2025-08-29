@@ -2,7 +2,6 @@ import FinalCallout from "@/components/FinalCallout";
 import { spacing, typography } from "@/styles/design-tokens";
 
 export default async function PrivacyPolicy() {
-
 	return (
 		<>
 			<section className={spacing.section}>

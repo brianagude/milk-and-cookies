@@ -1,6 +1,5 @@
 export const spacing = {
-	section:
-		"relative scroll-mt-2 border-b-4 py-16 md:py-20 lg:py-32",
+	section: "relative scroll-mt-2 border-b-4 py-16 md:py-20 lg:py-32",
 	container:
 		"w-full px-4 flex flex-col space-y-12 sm:px-6 md:space-y-16 md:px-8 lg:px-20",
 };
@@ -18,16 +17,17 @@ export const typography = {
 	body: `${baseBody} text-base md:text-xl`,
 	bodyLarge: `${baseBody} text-xl md:text-2xl`,
 	blockLarge: `text-stroke text-shadow-lg`,
-	blockSmall: `text-stroke text-shadow-sm`
-}
+	blockSmall: `text-stroke text-shadow-sm`,
+};
 
-const buttonBase = 'border-4 border-black flex justify-center items-center w-full [box-shadow:-4px_4px_0_0_#000] font-bold uppercase text-lg py-4 px-5 leading-tight tracking-wide font-display cursor-pointer transition ease-in-out hover:translate-x-[2px] hover:translate-y-[-2px] hover:[box-shadow:-8px_8px_0_0_#000] sm:min-w-[288px] sm:w-fit sm:px-8 sm:py-6 sm:text-2xl'
+const buttonBase =
+	"border-4 border-black flex justify-center items-center w-full [box-shadow:-4px_4px_0_0_#000] font-bold uppercase text-lg py-4 px-5 leading-tight tracking-wide font-display cursor-pointer transition ease-in-out hover:translate-x-[2px] hover:translate-y-[-2px] hover:[box-shadow:-8px_8px_0_0_#000] sm:min-w-[288px] sm:w-fit sm:px-8 sm:py-6 sm:text-2xl";
 
 export const buttons = {
 	primary: `${buttonBase} bg-gradient-to-tr from-pink to-pink hover:to-scarlet`,
 	secondary: `${buttonBase} bg-olive hover:bg-blue`,
 	gradient: `${buttonBase} bg-gradient-to-tr from-pink to-scarlet hover:from-scarlet`,
-}
+};
 
 export const forms = {
 	input:
@@ -35,8 +35,6 @@ export const forms = {
 	label: "px-4",
 	fieldset: "flex flex-col gap-2",
 };
-
-
 
 // export const typography = {
 // 	h1: `${baseText} leading-tight text-3xl sm:text-5xl lg:text-6xl`,

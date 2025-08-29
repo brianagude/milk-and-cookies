@@ -46,7 +46,7 @@ export default function Newsletter({
 }: NewsletterProps) {
 	const [agreed, setAgreed] = useState(false);
 
-	if (!actionUrl) return null
+	if (!actionUrl) return null;
 
 	const handleSubmit = (e: React.FormEvent) => {
 		if (disclaimerText && !agreed) {
