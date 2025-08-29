@@ -13,11 +13,9 @@ import Countdown from "./Countdown";
 import Events from "./Events";
 import Products from "./Products";
 
-// Extend types to include _key and make optional fields required for props
-type CountdownSection = CountdownType & { _key: string; countdownDate: string };
+type CountdownSection = CountdownType & { _key: string };
 type EventsSection = EventsType & { _key: string };
 type ProductsSection = ProductsType & { _key: string };
-
 type Section = CountdownSection | EventsSection | ProductsSection;
 
 type ActionsWrapperType = {
@@ -40,7 +38,15 @@ export default function ActionsWrapper({
 				{sections.map((section) => {
 					switch (section._type) {
 						case "countdown":
-							return <Countdown {...section} key={section._key} />;
+							if (!section.countdownDate) return null;
+							return (
+								<Countdown
+									key={section._key}
+									countdownDate={section.countdownDate}
+									countdownText={section.countdownText}
+									style="home"
+								/>
+							);
 						case "events":
 							return <Events {...section} key={section._key} />;
 						case "products":

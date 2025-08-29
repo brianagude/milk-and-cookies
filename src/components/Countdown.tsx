@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { typography } from "@/styles/design-tokens";
 
 type CountdownProps = {
-	countdownDate: string; // required
+	countdownDate: string;
 	countdownText?: string;
-	style?: "landing" | "home";
+	style: "landing" | "home";
 };
 
 type TimeLeft = {
