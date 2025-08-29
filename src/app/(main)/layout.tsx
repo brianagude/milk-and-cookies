@@ -1,6 +1,3 @@
-import { draftMode } from "next/headers";
-import { VisualEditing } from "next-sanity";
-import { DisableDraftMode } from "@/components/DisableDraftMode";
 import GlobalDataProvider from "@/components/GlobalDataContext";
 import Header from "@/components/Header";
 import { TailwindHelper } from "@/components/TailwindHelper";
@@ -22,7 +19,7 @@ export default async function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const { isEnabled } = await draftMode();
+	
 	const settings = await client.fetch(query, {}, options);
 	const footer = settings?.footer || [];
 
@@ -34,14 +31,6 @@ export default async function RootLayout({
 					{children}
 				</main>
 			</GlobalDataProvider>
-
-			{isEnabled && (
-				<>
-					<VisualEditing />
-					<DisableDraftMode />
-				</>
-			)}
-
 			{process.env.NODE_ENV === "development" && <TailwindHelper />}
 		</>
 	);

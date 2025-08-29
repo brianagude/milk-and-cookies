@@ -4,9 +4,10 @@ import { urlFor } from "@/sanity/lib/image";
 import { typography } from "@/styles/design-tokens";
 import Button from "./inputs/Button";
 import { BlockContent } from "./inputs/PortableTextComponents";
+import type { BrandsCallout } from "@types"
 
-export default function BrandsCallout(module) {
-	const { backgroundImage, button, headline, subheadline, brands } = module;
+export default function BrandsCallout(props: BrandsCallout) {
+  const { backgroundImage, button, headline, subheadline, brands } = props;
 	if (!headline && !subheadline && !button && !backgroundImage && !brands)
 		return null;
 

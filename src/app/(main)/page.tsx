@@ -8,11 +8,12 @@ import Marquee from "@/components/Marquee";
 import NewsletterSection from "@/components/Newsletter";
 import TextCallout from "@/components/TextCallout";
 import { client } from "@/sanity/lib/client";
+import type { Home } from "@types";
 
 const query = `*[_type == "home"][0]{
 	hero {
-  ...,
-  "playbackId": backgroundVideo.asset->playbackId,
+		...,
+		"playbackId": backgroundVideo.asset->playbackId,
   },
 	divider,
 	finalCallout,
@@ -24,9 +25,10 @@ const query = `*[_type == "home"][0]{
 const options = { next: { revalidate: 30 } };
 
 export default async function Home() {
-	const data = await client.fetch(query, {}, options);
+	const data = await client.fetch<Home>(query, {}, options);
 	if (!data) return notFound();
 	const { hero, sections, divider, finalCallout } = data || {};
+	
 
 	return (
 		<>

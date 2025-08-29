@@ -1,7 +1,7 @@
 // components/FinalCallout.jsx
 "use client";
 
-import type { SanityImageAsset } from "@types";
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { spacing, typography } from "@/styles/design-tokens";
@@ -11,7 +11,7 @@ interface FinalCalloutProps {
 	kicker?: string;
 	subtitle?: string;
 	title?: string;
-	backgroundImage?: SanityImageAsset;
+	backgroundImage?: SanityImageSource;
 }
 
 export default function FinalCallout({

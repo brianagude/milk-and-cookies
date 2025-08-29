@@ -6,7 +6,7 @@ import { buttons } from "@/styles/design-tokens";
 
 interface ButtonProps {
 	text?: string;
-	url: string;
+	url?: string;
 	style?: "primary" | "secondary" | "gradient";
 	children?: ReactNode;
 	classes?: string;

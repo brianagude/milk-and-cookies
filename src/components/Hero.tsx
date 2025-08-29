@@ -1,40 +1,40 @@
 // components/HeroSection.jsx
 
-import type { SanityImageAsset } from "@types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { spacing, typography } from "@/styles/design-tokens";
 import Button from "./inputs/Button";
 import { ChunkyBlockContent } from "./inputs/PortableTextComponents";
 import Video from "./inputs/Video";
+import type { BlockContent, MuxVideo } from "@types"
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-export type SimpleBlockContent = Array<{
-	children?: Array<{
-		marks?: Array<string>;
-		text?: string;
-		_type: "span";
-		_key: string;
-	}>;
-	style?: "normal" | "k1" | "k2" | "large" | "small";
-	listItem?: "bullet" | "number";
-	markDefs?: Array<{
-		href?: string;
-		_type: "link";
-		_key: string;
-	}>;
-	level?: number;
-	_type: "block";
-	_key: string;
-}>;
+export type ExpandedSanityImage = {
+  _type: "image";
+  alt?: string;
+  asset?: {
+    _ref: string;
+    _type: "reference";
+  };
+};
 
-interface HeroSectionProps {
-	style?: string;
-	headline1: string;
-	headline2?: string;
-	subheadline?: string;
-	body?: SimpleBlockContent;
-	backgroundImage?: SanityImageAsset;
-}
+export type HeroSectionProps = {
+  backgroundImage?: ExpandedSanityImage;
+  backgroundVideo?: MuxVideo;
+  kicker?: string;
+  headline1?: string;
+  headline2?: string;
+  subheadline?: BlockContent;
+  playbackId?: string;
+  buttons?: {
+    text?: string;
+    url?: string;
+    style?: "primary" | "secondary" | "gradient";
+    _key: string;
+  }[];
+  style: "landing" | "home";
+};
+
 
 export default function HeroSection({
 	headline1,
@@ -97,20 +97,13 @@ export default function HeroSection({
 				<div className="absolute inset-0 z-10">
 					<Image
 						src={urlFor(backgroundImage).url()}
-						alt={backgroundImage.altText || "Crowd at Milk & Cookies Fest"}
+						alt={backgroundImage.alt || "Crowd at Milk & Cookies Fest"}
 						fill
 						className="object-cover"
 						priority
-						placeholder="blur"
-						blurDataURL={backgroundImage.asset.metadata.lqip}
+						// placeholder="blur"
+						// blurDataURL={backgroundImage.asset.metadata?.lqip}
 					/>
-					{/* <SanityImageComponent
-						sanityImage={backgroundImage}
-						alt={backgroundImage.altText || "Crowd at Milk & Cookies Fest"}
-						fill
-						classes="object-cover"
-						priority
-					/> */}
 					<div className="absolute inset-0 bg-black/10" />
 				</div>
 			)}
@@ -118,7 +111,6 @@ export default function HeroSection({
 			{playbackId && (
 				<Video
 					playbackId={playbackId}
-					alt="Reel of some of our favorite projects"
 					classes="absolute inset-0 z-10"
 				/>
 			)}
