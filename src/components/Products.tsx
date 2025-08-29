@@ -6,11 +6,13 @@ import { useCallback } from "react";
 import { urlFor } from "@/sanity/lib/image";
 import { typography } from "@/styles/design-tokens";
 import Button from "./inputs/Button";
+import type { Products as ProductsType } from "@types";
 
-export default function Products(section) {
-	const { headline, products } = section;
+type ProductType = NonNullable<ProductsType["products"]>[number];
 
-	// Embla carousel
+export default function Products(props: ProductsType) {
+	const { headline, products = [] } = props;
+
 	const [emblaRef, emblaApi] = useEmblaCarousel({
 		loop: true,
 		align: "center",
@@ -24,14 +26,14 @@ export default function Products(section) {
 		if (emblaApi) emblaApi.scrollNext();
 	}, [emblaApi]);
 
+	if (!products.length) return null;
+
 	const productWrapperClass =
 		products.length === 1
 			? "max-w-xl"
 			: products.length === 2
 				? "max-w-6xl sm:grid-cols-2"
 				: "sm:grid-cols-2 xl:grid-cols-3";
-
-	if (!products || products.length === 0) return null;
 
 	return (
 		<section id="products">
@@ -97,29 +99,35 @@ export default function Products(section) {
 	);
 }
 
-// Extracted card for reuse
-function ProductCard({ product }) {
+// Strongly typed ProductCard
+function ProductCard({ product }: { product: ProductType }) {
 	return (
-		<div key={product._key} href={product.link} className="border-4 block">
-			<Image
-				src={urlFor(product.image).url()}
-				alt={product.name}
-				width={768}
-				height={600}
-				className="aspect-[4/3] w-full h-auto object-cover"
-			/>
+		<div className="border-4 block">
+			{product.image?.asset?._ref && (
+				<Image
+					src={urlFor(product.image).url()}
+					alt={product.name || ""}
+					width={768}
+					height={600}
+					className="aspect-[4/3] w-full h-auto object-cover"
+				/>
+			)}
 
 			<div className="px-4 py-6 border-t-4 bg-white sm:px-6 sm:py-8">
 				<h4 className={typography.h5}>{product.name}</h4>
-				<p className={`${typography.body} mt-3`}>{product.description}</p>
-				<Button
-					url={product.link}
-					style="secondary"
-					classes="flex flex-wrap gap-3 items-center justify-between !w-full mt-5 xl:mt-8"
-				>
-					purchase
-					{product.price && <span>{product.price}</span>}
-				</Button>
+				{product.description && (
+					<p className={`${typography.body} mt-3`}>{product.description}</p>
+				)}
+				{product.link && (
+					<Button
+						url={product.link}
+						style="secondary"
+						classes="flex flex-wrap gap-3 items-center justify-between !w-full mt-5 xl:mt-8"
+					>
+						Purchase
+						{product.price && <span>{product.price}</span>}
+					</Button>
+				)}
 			</div>
 		</div>
 	);

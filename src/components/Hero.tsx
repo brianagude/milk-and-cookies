@@ -7,16 +7,9 @@ import Button from "./inputs/Button";
 import { ChunkyBlockContent } from "./inputs/PortableTextComponents";
 import Video from "./inputs/Video";
 import type { BlockContent, MuxVideo } from "@types"
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import type { ExpandedSanityImage } from "@/sanity/lib/types"
 
-export type ExpandedSanityImage = {
-  _type: "image";
-  alt?: string;
-  asset?: {
-    _ref: string;
-    _type: "reference";
-  };
-};
+
 
 export type HeroSectionProps = {
   backgroundImage?: ExpandedSanityImage;

@@ -32,11 +32,12 @@ export default function BrandsCallout(props: BrandsCallout) {
 				{Array.isArray(brands) && brands.length > 0 && (
 					<div className="flex flex-wrap items-center justify-center gap-8 max-w-5xl mx-auto md:gap-12">
 						{brands.map((brand) => {
+							if (!brand.logo) return null
 							const content = (
 								<>
 									<Image
 										src={urlFor(brand.logo).url()}
-										alt={brand.logo.alt}
+										alt={brand.logo.alt || "Brand Logo"}
 										width={250}
 										height={40}
 										className="h-10 w-auto"
@@ -58,14 +59,14 @@ export default function BrandsCallout(props: BrandsCallout) {
 					</div>
 				)}
 
-				{button && <Button key={button._key} {...button} />}
+				{button && <Button {...button} />}
 			</div>
 
 			{backgroundImage && (
 				<div className="absolute inset-0 z-10">
 					<Image
 						src={urlFor(backgroundImage).url()}
-						alt={backgroundImage.altText || "Crowd at Milk & Cookies Fest"}
+						alt={backgroundImage.alt || "Crowd at Milk & Cookies Fest"}
 						fill
 						className="object-cover"
 						priority

@@ -7,49 +7,24 @@ import { urlFor } from "@/sanity/lib/image";
 import { typography } from "@/styles/design-tokens";
 import Button from "./inputs/Button";
 import { BlockContent } from "./inputs/PortableTextComponents";
+import type { Events as EventsType } from "@types";
 
-// Event interface
-interface EventDetail {
-	_key: string;
-	caption: string;
-	content: any;
-}
+type EventType = NonNullable<EventsType["events"]>[number];
+type DetailType = NonNullable<NonNullable<EventType["info"]>["details"]>[number];
 
-interface EventInfo {
-	subheadline?: any;
-	details?: EventDetail[];
-}
+export default function Events({ headline, events = [] }: EventsType) {
+  const [selectedEvent, setSelectedEvent] = useState<NonNullable<EventsType["events"]>[number] | null>(null);
 
-interface EventType {
-	_key: string;
-	name: string;
-	description?: string;
-	info?: EventInfo;
-	tag?: string;
-	location?: string;
-	date?: string;
-	link: string;
-}
-
-interface EventsProps {
-	headline?: string;
-	events: EventType[];
-}
-
-// Main Events Component
-export default function Events({ headline, events }: EventsProps) {
-	const [selectedEvent, setSelectedEvent] = useState<EventType | null>(null);
+	if (!events || events.length === 0) return null;
 
 	const eventWrapperClass =
 		events.length === 1
 			? "max-w-xl"
 			: events.length === 2
-				? "max-w-6xl sm:grid-cols-2"
-				: events.length === 4
-					? "max-w-6xl sm:grid-cols-2"
-					: "lg:grid-cols-2 2xl:grid-cols-3";
-
-	if (!events || events.length === 0) return null;
+			? "max-w-6xl sm:grid-cols-2"
+			: events.length === 4
+			? "max-w-6xl sm:grid-cols-2"
+			: "lg:grid-cols-2 2xl:grid-cols-3";
 
 	return (
 		<Drawer.Root
@@ -58,9 +33,7 @@ export default function Events({ headline, events }: EventsProps) {
 		>
 			<section id="events">
 				<div className="space-y-12 md:space-y-16">
-					{headline && (
-						<h2 className={`${typography.h3} text-center`}>{headline}</h2>
-					)}
+					{headline && <h2 className={`${typography.h3} text-center`}>{headline}</h2>}
 
 					<ul className={`grid mx-auto ${eventWrapperClass} gap-8 md:gap-10`}>
 						{events.map((event) => (
@@ -95,40 +68,30 @@ export default function Events({ headline, events }: EventsProps) {
 								<div className="overflow-auto max-w-5xl mx-auto">
 									<div className="flex-1 space-y-5 sm:space-y-8 lg:space-y-12">
 										<div className="space-y-2">
-											<Drawer.Title
-												className={`${typography.h3} !font-display`}
-											>
+											<Drawer.Title className={`${typography.h3} !font-display`}>
 												{selectedEvent.name}
 											</Drawer.Title>
-											{selectedEvent.description &&
-												!selectedEvent.info.subheadline && (
-													<p className={typography.body}>
-														{selectedEvent.description}
-													</p>
-												)}
+
+											{selectedEvent.description && !selectedEvent.info.subheadline && (
+												<p className={typography.body}>{selectedEvent.description}</p>
+											)}
+
 											{selectedEvent.info.subheadline && (
 												<BlockContent value={selectedEvent.info.subheadline} />
 											)}
 										</div>
 
-										<Button
-											url={selectedEvent.link}
-											style="primary"
-											text="Get tickets"
-											classes="!w-full"
-										/>
-
-										{selectedEvent.info.details && (
-											<Accordion details={selectedEvent.info.details} />
-										)}
-
-										{selectedEvent.info.details.length > 5 && (
+										{selectedEvent.link && (
 											<Button
 												url={selectedEvent.link}
 												style="primary"
 												text="Get tickets"
 												classes="!w-full"
 											/>
+										)}
+
+										{selectedEvent.info.details && selectedEvent.info.details.length > 0 && (
+											<Accordion details={selectedEvent.info.details} />
 										)}
 									</div>
 								</div>
@@ -141,17 +104,14 @@ export default function Events({ headline, events }: EventsProps) {
 	);
 }
 
-// Accessible Accordion for details
-function Accordion({ details }: { details: EventDetail[] }) {
+function Accordion({ details = [] }: { details: DetailType[] }) {
 	const [openIndex, setOpenIndex] = useState<number | null>(null);
+	if (!details) return null;
 
 	return (
 		<ul className="space-y-6">
-			{details.map((detail, idx) => (
-				<div
-					key={detail._key}
-					className="border-4 cursor-pointer hover:bg-black/10"
-				>
+			{details.map((detail, idx: number) => (
+				<li key={detail._key} className="border-4 cursor-pointer hover:bg-black/10">
 					<button
 						type="button"
 						aria-expanded={openIndex === idx}
@@ -168,6 +128,7 @@ function Accordion({ details }: { details: EventDetail[] }) {
 							alt={openIndex === idx ? "Collapse section" : "Expand section"}
 						/>
 					</button>
+
 					<div
 						id={`accordion-panel-${detail._key}`}
 						hidden={openIndex !== idx}
@@ -175,50 +136,37 @@ function Accordion({ details }: { details: EventDetail[] }) {
 					>
 						{openIndex === idx && (
 							<div className="grid gap-4 md:grid-cols-[0.4fr_1fr] md:gap-6">
-								{detail.photo && (
+								{detail.photo?.asset?._ref && (
 									<Image
 										src={urlFor(detail.photo).url()}
-										alt={detail.photo.alt}
+										alt={detail.photo.alt || ""}
 										width={768}
 										height={576}
 										className="object-cover rounded-sm"
 									/>
 								)}
-								<BlockContent value={detail.content} />
+								{detail.content && <BlockContent value={detail.content} />}
 							</div>
 						)}
 					</div>
-				</div>
+				</li>
 			))}
 		</ul>
 	);
 }
 
-// Event Card (with Learn More)
-function EventCard({
-	event,
-	onLearnMore,
-}: {
-	event: EventType;
-	onLearnMore: () => void;
-}) {
+function EventCard({ event, onLearnMore }: { event: EventType; onLearnMore: () => void }) {
 	return (
 		<div className="relative border-4 px-4 py-6 bg-white flex flex-col gap-6 sm:gap-8 sm:px-6 sm:py-10">
 			{event.tag && (
-				<p
-					className={`${typography.body} uppercase text-white bg-black py-1 px-5 absolute top-0 right-4 -translate-y-1/2`}
-				>
+				<p className={`${typography.body} uppercase text-white bg-black py-1 px-5 absolute top-0 right-4 -translate-y-1/2`}>
 					{event.tag}
 				</p>
 			)}
 
 			<div className="space-y-1 flex-1">
-				<h4 className={`${typography.h4} !font-display`}>
-					{event.name || "Untitled Event"}
-				</h4>
-				{event.description && (
-					<p className={`${typography.body}`}>{event.description}</p>
-				)}
+				<h4 className={`${typography.h4} !font-display`}>{event.name || "Untitled Event"}</h4>
+				{event.description && <p className={`${typography.body}`}>{event.description}</p>}
 			</div>
 
 			<div className="space-y-1">
@@ -239,12 +187,9 @@ function EventCard({
 						</button>
 					</Drawer.Trigger>
 				)}
-				<Button
-					url={event.link}
-					style="secondary"
-					text="Get tickets"
-					classes="!w-full"
-				/>
+				{event.link && (
+					<Button url={event.link} style="secondary" text="Get tickets" classes="!w-full" />
+				)}
 			</div>
 		</div>
 	);

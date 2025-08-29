@@ -1,11 +1,16 @@
+"use client";
+
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { typography } from "@/styles/design-tokens";
 import Button from "./inputs/Button";
 import { BlockContent } from "./inputs/PortableTextComponents";
+import type { TextCallout as TextCalloutType } from "@types";
 
-export default function TextCallout(module) {
-	const { backgroundImage, button, headline, subheadline } = module;
+export default function TextCallout(props: TextCalloutType) {
+	const { backgroundImage, button, headline, subheadline } = props;
+
+	// Nothing to render
 	if (!headline && !subheadline && !button && !backgroundImage) return null;
 
 	return (
@@ -14,22 +19,30 @@ export default function TextCallout(module) {
 				{(headline || subheadline) && (
 					<div className="text-block w-full space-y-4 sm:space-y-6 lg:space-y-10">
 						{headline && (
-							<h2 className={`${typography.h3} sm:text-center`}>{headline}</h2>
+							<h2 className={`${typography.h3} sm:text-center`}>
+								{headline}
+							</h2>
 						)}
-						{subheadline && (
+						{subheadline && subheadline.length > 0 && (
 							<BlockContent value={subheadline} classes="lg:columns-2" />
 						)}
 					</div>
 				)}
 
-				{button && <Button key={button._key} {...button} />}
+				{button?.text && button?.url && (
+					<Button
+						text={button.text}
+						url={button.url}
+						style={button.style || "primary"}
+					/>
+				)}
 			</div>
 
-			{backgroundImage && (
+			{backgroundImage?.asset?._ref && (
 				<div className="absolute inset-0 z-10">
 					<Image
 						src={urlFor(backgroundImage).url()}
-						alt={backgroundImage.altText || "Crowd at Milk & Cookies Fest"}
+						alt={backgroundImage.alt || "Background image"}
 						fill
 						className="object-cover"
 						priority

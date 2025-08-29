@@ -1,17 +1,17 @@
 // components/FinalCallout.jsx
 "use client";
 
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { spacing, typography } from "@/styles/design-tokens";
 import { useGlobalData } from "./GlobalDataContext";
+import type { ExpandedSanityImage } from "@/sanity/lib/types"
 
 interface FinalCalloutProps {
 	kicker?: string;
 	subtitle?: string;
 	title?: string;
-	backgroundImage?: SanityImageSource;
+	backgroundImage?: ExpandedSanityImage;
 }
 
 export default function FinalCallout({
@@ -115,7 +115,7 @@ export default function FinalCallout({
 					<div className="absolute inset-0 z-10">
 						<Image
 							src={urlFor(backgroundImage).url()}
-							alt={backgroundImage.altText || "Crowd at Milk & Cookies Fest"}
+							alt={backgroundImage.alt || "Crowd at Milk & Cookies Fest"}
 							fill
 							className="object-cover"
 							priority
