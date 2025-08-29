@@ -37,11 +37,13 @@ export default function Countdown({
 	style = "home",
 }: CountdownProps) {
 	// Validate date upfront
-	if (!countdownDate || isNaN(new Date(countdownDate).getTime())) return null;
+	
 
 	const [timeLeft, setTimeLeft] = useState<TimeLeft>(() =>
 		calculateTimeLeft(countdownDate),
 	);
+
+	if (!countdownDate || isNaN(new Date(countdownDate).getTime())) return null;
 
 	useEffect(() => {
 		const timer = setInterval(() => {
