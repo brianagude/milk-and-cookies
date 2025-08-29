@@ -1,33 +1,30 @@
 // components/HeroSection.jsx
 
+import type { BlockContent, MuxVideo } from "@types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import type { ExpandedSanityImage } from "@/sanity/lib/types";
 import { spacing, typography } from "@/styles/design-tokens";
 import Button from "./inputs/Button";
 import { ChunkyBlockContent } from "./inputs/PortableTextComponents";
 import Video from "./inputs/Video";
-import type { BlockContent, MuxVideo } from "@types"
-import type { ExpandedSanityImage } from "@/sanity/lib/types"
-
-
 
 export type HeroSectionProps = {
-  backgroundImage?: ExpandedSanityImage;
-  backgroundVideo?: MuxVideo;
-  kicker?: string;
-  headline1?: string;
-  headline2?: string;
-  subheadline?: BlockContent;
-  playbackId?: string;
-  buttons?: {
-    text?: string;
-    url?: string;
-    style?: "primary" | "secondary" | "gradient";
-    _key: string;
-  }[];
-  style: "landing" | "home";
+	backgroundImage?: ExpandedSanityImage;
+	backgroundVideo?: MuxVideo;
+	kicker?: string;
+	headline1?: string;
+	headline2?: string;
+	subheadline?: BlockContent;
+	playbackId?: string;
+	buttons?: {
+		text?: string;
+		url?: string;
+		style?: "primary" | "secondary" | "gradient";
+		_key: string;
+	}[];
+	style: "landing" | "home";
 };
-
 
 export default function HeroSection({
 	headline1,
@@ -102,10 +99,7 @@ export default function HeroSection({
 			)}
 
 			{playbackId && (
-				<Video
-					playbackId={playbackId}
-					classes="absolute inset-0 z-10"
-				/>
+				<Video playbackId={playbackId} classes="absolute inset-0 z-10" />
 			)}
 
 			{style === "landing" && (

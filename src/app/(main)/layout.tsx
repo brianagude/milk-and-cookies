@@ -19,7 +19,6 @@ export default async function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	
 	const settings = await client.fetch(query, {}, options);
 	const footer = settings?.footer || [];
 

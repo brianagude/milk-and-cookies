@@ -18,7 +18,7 @@ export const typography = {
 	bodyLarge: `${baseBody} text-xl md:text-2xl`,
 	blockLarge: `text-stroke text-shadow-lg`,
 	blockSmall: `text-stroke text-shadow-sm`,
-	link: `underline`
+	link: `underline`,
 };
 
 const buttonBase =

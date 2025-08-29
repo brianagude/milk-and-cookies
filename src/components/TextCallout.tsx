@@ -1,11 +1,11 @@
 "use client";
 
+import type { TextCallout as TextCalloutType } from "@types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { typography } from "@/styles/design-tokens";
 import Button from "./inputs/Button";
 import { BlockContent } from "./inputs/PortableTextComponents";
-import type { TextCallout as TextCalloutType } from "@types";
 
 export default function TextCallout(props: TextCalloutType) {
 	const { backgroundImage, button, headline, subheadline } = props;
@@ -19,9 +19,7 @@ export default function TextCallout(props: TextCalloutType) {
 				{(headline || subheadline) && (
 					<div className="text-block w-full space-y-4 sm:space-y-6 lg:space-y-10">
 						{headline && (
-							<h2 className={`${typography.h3} sm:text-center`}>
-								{headline}
-							</h2>
+							<h2 className={`${typography.h3} sm:text-center`}>{headline}</h2>
 						)}
 						{subheadline && subheadline.length > 0 && (
 							<BlockContent value={subheadline} classes="lg:columns-2" />

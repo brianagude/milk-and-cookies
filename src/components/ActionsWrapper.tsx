@@ -1,15 +1,17 @@
 "use client";
 
+import type {
+	Countdown as CountdownType,
+	Events as EventsType,
+	Products as ProductsType,
+} from "@types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import type { ExpandedSanityImage } from "@/sanity/lib/types";
 import { spacing } from "@/styles/design-tokens";
 import Countdown from "./Countdown";
 import Events from "./Events";
 import Products from "./Products";
-import type { Countdown as CountdownType } from "@types";
-import type { Events as EventsType } from "@types";
-import type { Products as ProductsType } from "@types";
-import type { ExpandedSanityImage } from "@/sanity/lib/types";
 
 // Extend types to include _key and make optional fields required for props
 type CountdownSection = CountdownType & { _key: string; countdownDate: string };
@@ -19,17 +21,22 @@ type ProductsSection = ProductsType & { _key: string };
 type Section = CountdownSection | EventsSection | ProductsSection;
 
 type ActionsWrapperType = {
-  _type: "actionsWrapper";
-  backgroundImage?: ExpandedSanityImage;
-  sections?: Section[];
+	_type: "actionsWrapper";
+	backgroundImage?: ExpandedSanityImage;
+	sections?: Section[];
 };
 
-export default function ActionsWrapper({ backgroundImage, sections }: ActionsWrapperType) {
+export default function ActionsWrapper({
+	backgroundImage,
+	sections,
+}: ActionsWrapperType) {
 	if (!sections || sections.length === 0) return null;
 
 	return (
 		<section className={spacing.section}>
-			<div className={`${spacing.container} relative z-20 !space-y-16 md:!space-y-20`}>
+			<div
+				className={`${spacing.container} relative z-20 !space-y-16 md:!space-y-20`}
+			>
 				{sections.map((section) => {
 					switch (section._type) {
 						case "countdown":

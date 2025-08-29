@@ -1,8 +1,8 @@
-import { draftMode } from "next/headers";
 import type { Metadata } from "next";
-import { catalpa, itc } from "@/styles/fonts";
+import { draftMode } from "next/headers";
 import { VisualEditing } from "next-sanity";
 import { DisableDraftMode } from "@/components/DisableDraftMode";
+import { catalpa, itc } from "@/styles/fonts";
 import "@/styles/globals.css";
 
 // ---------- Metadata for the application ----------

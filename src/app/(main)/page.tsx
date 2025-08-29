@@ -1,3 +1,4 @@
+import type { Home } from "@types";
 import { notFound } from "next/navigation";
 import ActionsWrapper from "@/components/ActionsWrapper";
 import BrandsCallout from "@/components/BrandsCallout";
@@ -8,7 +9,6 @@ import Marquee from "@/components/Marquee";
 import NewsletterSection from "@/components/Newsletter";
 import TextCallout from "@/components/TextCallout";
 import { client } from "@/sanity/lib/client";
-import type { Home } from "@types";
 
 const query = `*[_type == "home"][0]{
 	hero {
@@ -28,7 +28,6 @@ export default async function Home() {
 	const data = await client.fetch<Home>(query, {}, options);
 	if (!data) return notFound();
 	const { hero, sections, divider, finalCallout } = data || {};
-	
 
 	return (
 		<>

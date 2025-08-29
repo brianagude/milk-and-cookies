@@ -1,13 +1,13 @@
+import type { BrandsCallout } from "@types";
 import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
 import { typography } from "@/styles/design-tokens";
 import Button from "./inputs/Button";
 import { BlockContent } from "./inputs/PortableTextComponents";
-import type { BrandsCallout } from "@types"
 
 export default function BrandsCallout(props: BrandsCallout) {
-  const { backgroundImage, button, headline, subheadline, brands } = props;
+	const { backgroundImage, button, headline, subheadline, brands } = props;
 	if (!headline && !subheadline && !button && !backgroundImage && !brands)
 		return null;
 
@@ -32,7 +32,7 @@ export default function BrandsCallout(props: BrandsCallout) {
 				{Array.isArray(brands) && brands.length > 0 && (
 					<div className="flex flex-wrap items-center justify-center gap-8 max-w-5xl mx-auto md:gap-12">
 						{brands.map((brand) => {
-							if (!brand.logo) return null
+							if (!brand.logo) return null;
 							const content = (
 								<>
 									<Image

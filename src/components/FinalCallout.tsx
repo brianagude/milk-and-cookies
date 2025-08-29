@@ -3,9 +3,9 @@
 
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import type { ExpandedSanityImage } from "@/sanity/lib/types";
 import { spacing, typography } from "@/styles/design-tokens";
 import { useGlobalData } from "./GlobalDataContext";
-import type { ExpandedSanityImage } from "@/sanity/lib/types"
 
 interface FinalCalloutProps {
 	kicker?: string;

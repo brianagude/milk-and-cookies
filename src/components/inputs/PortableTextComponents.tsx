@@ -39,7 +39,7 @@ export const BlockContent = ({
 	classes?: string;
 }) => {
 	return (
-		<div className={classes || ''}>
+		<div className={classes || ""}>
 			<PortableText value={value} components={blockContentComponents} />
 		</div>
 	);

@@ -17,7 +17,7 @@ type TimeLeft = {
 
 const calculateTimeLeft = (date: string): TimeLeft => {
 	const targetTime = new Date(date).getTime();
-	if (isNaN(targetTime)) return { days: 0, hours: 0, minutes: 0 };
+	if (Number.isNaN(targetTime)) return { days: 0, hours: 0, minutes: 0 };
 
 	const now = Date.now();
 	const diff = targetTime - now;
@@ -36,14 +36,9 @@ export default function Countdown({
 	countdownText,
 	style = "home",
 }: CountdownProps) {
-	// Validate date upfront
-	
-
 	const [timeLeft, setTimeLeft] = useState<TimeLeft>(() =>
 		calculateTimeLeft(countdownDate),
 	);
-
-	if (!countdownDate || isNaN(new Date(countdownDate).getTime())) return null;
 
 	useEffect(() => {
 		const timer = setInterval(() => {
@@ -52,6 +47,9 @@ export default function Countdown({
 
 		return () => clearInterval(timer);
 	}, [countdownDate]);
+
+	if (!countdownDate || Number.isNaN(new Date(countdownDate).getTime()))
+		return null;
 
 	// Classes
 	const landingClass = "bg-cream border-b-4";
@@ -82,7 +80,10 @@ export default function Countdown({
 				)}
 
 				{/* Timer digits */}
-				<div className="flex items-center w-full justify-center" aria-hidden="true">
+				<div
+					className="flex items-center w-full justify-center"
+					aria-hidden="true"
+				>
 					<time className={counterClass} dateTime={`${timeLeft.days}D`}>
 						{timeLeft.days}
 					</time>

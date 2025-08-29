@@ -1,12 +1,12 @@
 "use client";
 
+import type { Products as ProductsType } from "@types";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { useCallback } from "react";
 import { urlFor } from "@/sanity/lib/image";
 import { typography } from "@/styles/design-tokens";
 import Button from "./inputs/Button";
-import type { Products as ProductsType } from "@types";
 
 type ProductType = NonNullable<ProductsType["products"]>[number];
 
