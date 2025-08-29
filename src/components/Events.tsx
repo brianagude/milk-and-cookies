@@ -56,8 +56,8 @@ export default function Events({ headline, events = [] }: EventsType) {
 			<Drawer.Portal>
 				<Drawer.Overlay className="fixed inset-0 bg-black/40 z-40" />
 				<Drawer.Content className="z-50 flex flex-col h-full fixed bottom-0 left-0 right-0 outline-none">
-					<div className="p-2 !pb-0 flex-1 sm:p-10">
-						<div className="w-full h-full space-y-4 bg-white p-4 border-4 border-b-0 lg:p-10">
+					<div className="p-2 !pb-0 flex-1 flex items-end sm:p-10">
+						<div className="w-full h-full max-h-[90vh] overflow-auto bg-white p-4 border-4 border-b-0 lg:p-10">
 							<div className="w-full flex justify-end mb-8 sm:mb-12">
 								<Drawer.Close asChild>
 									<button
@@ -131,7 +131,7 @@ function Accordion({ details = [] }: { details: DetailType[] }) {
 						type="button"
 						aria-expanded={openIndex === idx}
 						aria-controls={`accordion-panel-${detail._key}`}
-						className={`${typography.h6} flex items-center justify-between gap-2 w-full cursor-pointer p-6`}
+						className={`${typography.h6} text-left flex items-center justify-between gap-2 w-full cursor-pointer p-6`}
 						id={`accordion-header-${detail._key}`}
 						onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
 					>
@@ -141,6 +141,7 @@ function Accordion({ details = [] }: { details: DetailType[] }) {
 							height={24}
 							width={24}
 							alt={openIndex === idx ? "Collapse section" : "Expand section"}
+							className="w-4 h-4 sm:w-auto h-auto"
 						/>
 					</button>
 
@@ -150,7 +151,7 @@ function Accordion({ details = [] }: { details: DetailType[] }) {
 						className="p-6 pt-0"
 					>
 						{openIndex === idx && (
-							<div className="grid gap-4 md:grid-cols-[0.4fr_1fr] md:gap-6">
+							<div className="grid gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-[0.5fr_1fr] ">
 								{detail.photo?.asset?._ref && (
 									<Image
 										src={urlFor(detail.photo).url()}

@@ -111,11 +111,22 @@ export default function FinalCallout({
 					alt="milk and cookies logo"
 					className="object-bottom-center object-cover relative z-20"
 				/>
-				{backgroundImage && (
+				{backgroundImage ? (
 					<div className="absolute inset-0 z-10">
 						<Image
 							src={urlFor(backgroundImage).url()}
 							alt={backgroundImage.alt || "Crowd at Milk & Cookies Fest"}
+							fill
+							className="object-cover"
+							priority
+						/>
+						<div className="absolute inset-0 bg-black/50" />
+					</div>
+				) : (
+					<div className="absolute inset-0 z-10">
+						<Image
+							src="/final.jpg"
+							alt="Crowd at Milk & Cookies Fest"
 							fill
 							className="object-cover"
 							priority

@@ -13,12 +13,13 @@ export const typography = {
 	h3: `${baseHeading} font-display text-3xl md:text-4xl xl:text-5xl`,
 	h4: `${baseHeading} font-sans text-3xl md:text-4xl `,
 	h5: `${baseHeading} font-sans text-2xl md:text-3xl`,
-	h6: `${baseHeading} font-sans text-2xl`,
+	h6: `${baseHeading} font-sans text-xl sm:text-2xl`,
 	body: `${baseBody} text-base md:text-xl`,
+	bodySmall: `${baseBody} font-light text-base`,
 	bodyLarge: `${baseBody} text-xl md:text-2xl`,
 	blockLarge: `text-stroke text-shadow-lg`,
 	blockSmall: `text-stroke text-shadow-sm`,
-	link: `underline`,
+	link: `underline font-medium hover:italic`,
 };
 
 const buttonBase =

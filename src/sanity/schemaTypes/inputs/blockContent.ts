@@ -21,17 +21,22 @@ export const blockContent = defineType({
 				],
 				annotations: [
 					{
-						title: "URL",
+						title: "Link",
 						name: "link",
 						type: "object",
 						fields: [
 							{
-								title: "URL",
+								title: "Href",
 								name: "href",
-								type: "url",
-							},
-						],
-					},
+								type: "string",
+								description: "Can be a URL (https://...), email (mailto:...), or phone (tel:...)",
+								validation: (Rule) => Rule.uri({
+									allowRelative: false,
+									scheme: ['http', 'https', 'mailto', 'tel']
+								})
+							}
+						]
+					}
 				],
 			},
 		}),

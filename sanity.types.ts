@@ -15,7 +15,7 @@
 // Source: schema.json
 export type TextCallout = {
   _type: "textCallout";
-  backgroundImage?: {
+  backgroundImage: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -25,7 +25,7 @@ export type TextCallout = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt?: string;
+    alt: string;
     _type: "image";
   };
   headline?: string;
@@ -58,7 +58,7 @@ export type Products = {
   _type: "products";
   headline?: string;
   products?: Array<{
-    name?: string;
+    name: string;
     description?: string;
     price?: string;
     image?: {
@@ -73,7 +73,7 @@ export type Products = {
       crop?: SanityImageCrop;
       _type: "image";
     };
-    link?: string;
+    link: string;
     _type: "product";
     _key: string;
   }>;
@@ -83,12 +83,12 @@ export type Events = {
   _type: "events";
   headline?: string;
   events?: Array<{
-    name?: string;
+    name: string;
     description?: string;
-    date?: string;
-    location?: string;
+    date: string;
+    location: string;
     tag?: string;
-    link?: string;
+    link: string;
     info?: {
       subheadline?: Array<{
         children?: Array<{
@@ -138,7 +138,7 @@ export type Events = {
           media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
-          alt?: string;
+          alt: string;
           _type: "image";
         };
         _type: "item";
@@ -152,7 +152,7 @@ export type Events = {
 
 export type Newsletter = {
   _type: "newsletter";
-  actionUrl?: string;
+  actionUrl: string;
   title?: string;
   buttonText?: string;
   backgroundColor?: "cream" | "blue" | "olive" | "scarlet" | "gradient-blue-cream" | "gradient-scarlet-cream" | "gradient-pink-cream" | "gradient-pink-blue" | "gradient-scarlet-pink";
@@ -160,7 +160,7 @@ export type Newsletter = {
 
 export type BrandsCallout = {
   _type: "brandsCallout";
-  backgroundImage?: {
+  backgroundImage: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -170,7 +170,7 @@ export type BrandsCallout = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt?: string;
+    alt: string;
     _type: "image";
   };
   headline?: string;
@@ -198,7 +198,7 @@ export type BrandsCallout = {
     style?: "primary" | "secondary" | "gradient";
   };
   brands?: Array<{
-    logo?: {
+    logo: {
       asset?: {
         _ref: string;
         _type: "reference";
@@ -208,7 +208,7 @@ export type BrandsCallout = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt?: string;
+      alt: string;
       _type: "image";
     };
     link?: string;
@@ -225,7 +225,7 @@ export type Marquee = {
 export type Countdown = {
   _type: "countdown";
   countdownText?: string;
-  countdownDate?: string;
+  countdownDate: string;
 };
 
 export type BlockContent = Array<{
@@ -264,7 +264,7 @@ export type Home = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt?: string;
+      alt: string;
       _type: "image";
     };
     backgroundVideo?: MuxVideo;
@@ -281,7 +281,7 @@ export type Home = {
     }>;
   };
   sections?: Array<{
-    backgroundImage?: {
+    backgroundImage: {
       asset?: {
         _ref: string;
         _type: "reference";
@@ -291,7 +291,7 @@ export type Home = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt?: string;
+      alt: string;
       _type: "image";
     };
     sections?: Array<{
@@ -319,7 +319,7 @@ export type Home = {
     _key: string;
   } & TextCallout>;
   divider?: {
-    backgroundImage?: {
+    backgroundImage: {
       asset?: {
         _ref: string;
         _type: "reference";
@@ -333,7 +333,7 @@ export type Home = {
     };
   };
   finalCallout?: {
-    backgroundImage?: {
+    backgroundImage: {
       asset?: {
         _ref: string;
         _type: "reference";
@@ -343,7 +343,7 @@ export type Home = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt?: string;
+      alt: string;
       _type: "image";
     };
     kicker?: string;
@@ -369,7 +369,7 @@ export type Landing = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt?: string;
+      alt: string;
       _type: "image";
     };
     backgroundVideo?: MuxVideo;
@@ -390,13 +390,13 @@ export type Landing = {
     countdownDate?: string;
   };
   newsletter?: {
-    actionUrl?: string;
+    actionUrl: string;
     title?: string;
     buttonText?: string;
     backgroundColor?: "cream" | "blue" | "olive" | "scarlet" | "gradient-blue-cream" | "gradient-scarlet-cream" | "gradient-pink-cream" | "gradient-pink-blue" | "gradient-scarlet-pink";
   };
   divider?: {
-    backgroundImage?: {
+    backgroundImage: {
       asset?: {
         _ref: string;
         _type: "reference";
@@ -410,7 +410,7 @@ export type Landing = {
     };
   };
   finalCallout?: {
-    backgroundImage?: {
+    backgroundImage: {
       asset?: {
         _ref: string;
         _type: "reference";
@@ -420,7 +420,7 @@ export type Landing = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt?: string;
+      alt: string;
       _type: "image";
     };
     kicker?: string;
@@ -450,8 +450,8 @@ export type Settings = {
       _type: "image";
     };
     button?: {
-      text?: string;
-      link?: string;
+      text: string;
+      link: string;
     };
   };
   footer?: {
@@ -470,17 +470,18 @@ export type Settings = {
     subtext?: string;
     email?: string;
     socialLinks?: Array<{
-      platform?: "instagram" | "vimeo" | "facebook" | "twitter" | "linkedin" | "youtube" | "tiktok";
-      url?: string;
+      platform: "instagram" | "vimeo" | "facebook" | "twitter" | "linkedin" | "youtube" | "tiktok";
+      url: string;
       _key: string;
     }>;
     linkList?: Array<{
-      text?: string;
-      url?: string;
+      text: string;
+      url: string;
       _key: string;
     }>;
     copyrightText?: string;
   };
+  privacy?: BlockContent;
 };
 
 export type MuxVideo = {
@@ -682,7 +683,7 @@ export type Geopoint = {
 
 export type Slug = {
   _type: "slug";
-  current?: string;
+  current: string;
   source?: string;
 };
 

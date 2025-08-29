@@ -5,8 +5,10 @@ import type { Settings } from "@types";
 import { createContext, useContext } from "react";
 
 type Footer = NonNullable<Settings["footer"]>;
+type Privacy = NonNullable<Settings["privacy"]>;
 interface GlobalData {
 	footer: Footer;
+	privacy: Privacy;
 }
 interface GlobalDataProviderProps {
 	value: GlobalData;

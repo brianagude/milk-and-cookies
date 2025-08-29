@@ -8,7 +8,8 @@ const query = `*[_type == "settings"][0]{
   footer,
   header {
     logo
-  }
+  },
+	privacy
 }`;
 
 // ---------- ISR / Revalidation options ----------
@@ -21,11 +22,12 @@ export default async function RootLayout({
 }) {
 	const settings = await client.fetch(query, {}, options);
 	const footer = settings?.footer || [];
+	const privacy = settings?.privacy || [];
 
 	return (
 		<>
 			<Header logo={settings?.header?.logo} />
-			<GlobalDataProvider value={{ footer }}>
+			<GlobalDataProvider value={{ footer, privacy }}>
 				<main className="max-w-[1728px] mx-auto border-l-4 border-r-4">
 					{children}
 				</main>

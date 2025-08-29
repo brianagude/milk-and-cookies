@@ -139,6 +139,12 @@ export const settings = defineType({
 				}),
 			],
 		}),
+		defineField({
+			name: "privacy",
+			title: "Privacy Policy",
+			type: "blockContent",
+			validation: (Rule) => Rule.required(),
+		})
 	],
 	preview: {
 		select: {
