@@ -112,6 +112,28 @@ export default function HeroSection({
 					/>
 				</div>
 			)}
+			{style === "home" && (
+				<div className="absolute bottom-0 -left-20 z-10 h-full w-auto lg:-left-10 xl:left-0">
+					<Image
+						src="/checker-wave.svg"
+						alt=""
+						height={1117}
+						width={216}
+						className="h-full w-auto"
+					/>
+				</div>
+			)}
+			{style === "home" && (
+				<div className="absolute bottom-0 -right-20 rotate-180 z-10 h-full w-auto lg:-right-10 xl:right-0">
+					<Image
+						src="/checker-wave.svg"
+						alt=""
+						height={1117}
+						width={216}
+						className="h-full w-auto"
+					/>
+				</div>
+			)}
 		</section>
 	);
 }
