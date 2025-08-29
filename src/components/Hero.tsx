@@ -109,6 +109,7 @@ export default function HeroSection({
 						fill
 						alt=""
 						className="object-bottom-center object-cover"
+						priority
 					/>
 				</div>
 			)}
@@ -120,6 +121,8 @@ export default function HeroSection({
 						height={1117}
 						width={216}
 						className="h-full w-auto"
+						priority
+
 					/>
 				</div>
 			)}
@@ -131,6 +134,8 @@ export default function HeroSection({
 						height={1117}
 						width={216}
 						className="h-full w-auto"
+						priority
+
 					/>
 				</div>
 			)}
