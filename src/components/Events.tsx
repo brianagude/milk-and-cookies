@@ -1,122 +1,229 @@
 "use client";
 
-import { spacing, typography } from "@/styles/design-tokens";
-import { Drawer } from "vaul";
-import Button from "./inputs/Button";
+import type { Events as EventsType } from "@types";
+import Image from "next/image";
 import { useState } from "react";
+import { Drawer } from "vaul";
+import { urlFor } from "@/sanity/lib/image";
+import { typography } from "@/styles/design-tokens";
+import Button from "./inputs/Button";
 import { BlockContent } from "./inputs/PortableTextComponents";
 
-export default function Events(section) {
-  const { headline, events } = section;
-  const [selectedEvent, setSelectedEvent] = useState(null);
+type EventType = NonNullable<EventsType["events"]>[number];
+type DetailType = NonNullable<
+	NonNullable<EventType["info"]>["details"]
+>[number];
 
-  const eventWrapperClass =
-    events.length === 1
-      ? "max-w-xl"
-      : events.length === 2
-      ? "max-w-6xl sm:grid-cols-2"
-      : "lg:grid-cols-2 2xl:grid-cols-3";
+export default function Events({ headline, events = [] }: EventsType) {
+	const [selectedEvent, setSelectedEvent] = useState<
+		NonNullable<EventsType["events"]>[number] | null
+	>(null);
 
-  if (!events || events.length === 0) return null;
+	if (!events || events.length === 0) return null;
 
+	const eventWrapperClass =
+		events.length === 1
+			? "max-w-xl"
+			: events.length === 2
+				? "max-w-6xl sm:grid-cols-2"
+				: events.length === 4
+					? "max-w-6xl sm:grid-cols-2"
+					: "lg:grid-cols-2 2xl:grid-cols-3";
 
+	return (
+		<Drawer.Root
+			open={!!selectedEvent}
+			onOpenChange={(open) => !open && setSelectedEvent(null)}
+		>
+			<section id="events">
+				<div className="space-y-12 md:space-y-16">
+					{headline && (
+						<h2 className={`${typography.h3} text-center`}>{headline}</h2>
+					)}
 
-  return (
-    <Drawer.Root open={!!selectedEvent} onOpenChange={(open) => !open && setSelectedEvent(null)}>
-      <section className={spacing.section} id="events">
-        <div className={events.length < 4 ? spacing.container : "space-y-6 md:space-y-10"}>
-          {headline && (
-            <h2 className={`${typography.h3} text-center`}>{headline}</h2>
-          )}
+					<ul className={`grid mx-auto ${eventWrapperClass} gap-8 md:gap-10`}>
+						{events.map((event) => (
+							<EventCard
+								key={event._key}
+								event={event}
+								onLearnMore={() => setSelectedEvent(event)}
+							/>
+						))}
+					</ul>
+				</div>
+			</section>
 
-          <div className={`grid mx-auto ${eventWrapperClass} gap-6 md:gap-8`}>
-            {events.map((event) => (
-              <EventCard key={event._key} event={event} onLearnMore={() => setSelectedEvent(event)} />
-            ))}
-          </div>
-        </div>
-      </section>
+			<Drawer.Portal>
+				<Drawer.Overlay className="fixed inset-0 bg-black/40 z-40" />
+				<Drawer.Content className="z-50 flex flex-col h-full fixed bottom-0 left-0 right-0 outline-none">
+					<div className="p-2 !pb-0 flex-1 flex items-end sm:p-10">
+						<div className="relative w-full h-full max-h-[90vh] overflow-auto bg-white p-4 pt-12 border-4 border-b-0 lg:p-10 lg:pt-24">
+							<div className="w-fit absolute top-4 right-4 lg:top-10 lg:right-10">
+								<Drawer.Close asChild>
+									<button
+										type="button"
+										className={`${typography.h6} cursor-pointer`}
+										aria-label="Close event details"
+									>
+										Close
+									</button>
+								</Drawer.Close>
+							</div>
 
-      <Drawer.Portal>
-        <Drawer.Overlay className="fixed inset-0 bg-black/40 z-40" />
-        <Drawer.Content className="z-50 bg-cream flex flex-col mt-24 h-4/5 fixed bottom-0 left-0 right-0 outline-none">
-          <div className="p-4 bg-white flex-1">
-            <div aria-hidden className="mx-auto w-12 h-1.5 flex-shrink-0 bg-gray-300 mb-8" />
+							{selectedEvent?.info && (
+								<div className="overflow-auto max-w-5xl mx-auto">
+									<div className="flex-1 space-y-5 sm:space-y-8 lg:space-y-12">
+										<div className="space-y-2">
+											<Drawer.Title
+												className={`${typography.h3} !font-display`}
+											>
+												{selectedEvent.name}
+											</Drawer.Title>
 
-            <div className="max-w-md mx-auto space-y-4">
-              <Drawer.Close asChild>
-                <button type="button" className={`${typography.h6} cursor-pointer`}>
-                  Close
-                </button>
-              </Drawer.Close>
+											{selectedEvent.description &&
+												!selectedEvent.info.subheadline && (
+													<p className={typography.body}>
+														{selectedEvent.description}
+													</p>
+												)}
 
-              {selectedEvent && selectedEvent.info && (
-                <div className="overflow-scroll">
-                  <div className="space-y-1 flex-1">
-                    <Drawer.Title className={`${typography.h4} !font-display`}>{selectedEvent.name}</Drawer.Title>
-                    {selectedEvent.description && !selectedEvent.info.subheadline && (
-                      <p className={`${typography.body}`}>{selectedEvent.description}</p>
-                    )}
-                    {selectedEvent.info.subheadline && (
-                      <BlockContent value={selectedEvent.info.subheadline}/>
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </Drawer.Content>
-      </Drawer.Portal>
-    </Drawer.Root>
-  );
+											{selectedEvent.info.subheadline && (
+												<BlockContent value={selectedEvent.info.subheadline} />
+											)}
+										</div>
+
+										{selectedEvent.link && (
+											<Button
+												url={selectedEvent.link}
+												style="primary"
+												text="Get tickets"
+												classes="!w-full"
+											/>
+										)}
+
+										{selectedEvent.info.details &&
+											selectedEvent.info.details.length > 0 && (
+												<Accordion details={selectedEvent.info.details} />
+											)}
+									</div>
+								</div>
+							)}
+						</div>
+					</div>
+				</Drawer.Content>
+			</Drawer.Portal>
+		</Drawer.Root>
+	);
 }
 
-// Event card with Learn More
-function EventCard({ event, onLearnMore }) {
-  return (
-    <div
-      key={event._key}
-      className="relative border-4 px-4 py-6 bg-white flex flex-col gap-4 sm:gap-6 sm:px-6 sm:py-8"
-    >
-      {event.tag && (
-        <p
-          className={`${typography.body} uppercase text-white bg-black py-1 px-5 absolute top-0 right-4 -translate-y-1/2`}
-        >
-          {event.tag}
-        </p>
-      )}
+function Accordion({ details = [] }: { details: DetailType[] }) {
+	const [openIndex, setOpenIndex] = useState<number | null>(null);
+	if (!details) return null;
 
-      <div className="space-y-1 flex-1">
-        <h4 className={`${typography.h4} !font-display`}>{event.name}</h4>
-        {event.description && (
-          <p className={`${typography.body}`}>{event.description}</p>
-        )}
-      </div>
+	return (
+		<ul className="space-y-6">
+			{details.map((detail, idx: number) => (
+				<li
+					key={detail._key}
+					className="border-4 cursor-pointer hover:bg-black/10"
+				>
+					<button
+						type="button"
+						aria-expanded={openIndex === idx}
+						aria-controls={`accordion-panel-${detail._key}`}
+						className={`${typography.h6} text-left flex items-center justify-between gap-2 w-full cursor-pointer p-6`}
+						id={`accordion-header-${detail._key}`}
+						onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+					>
+						<span>{detail.caption}</span>
+						<Image
+							src={openIndex === idx ? "/minus.svg" : "/plus.svg"}
+							height={24}
+							width={24}
+							alt={openIndex === idx ? "Collapse section" : "Expand section"}
+							className="w-4 h-4 sm:w-auto sm:h-auto"
+						/>
+					</button>
 
-      <div className="space-y-1">
-        {event.location && <h6 className={typography.h6}>{event.location}</h6>}
-        {event.date && <p className={typography.body}>{event.date}</p>}
-      </div>
+					<div
+						id={`accordion-panel-${detail._key}`}
+						hidden={openIndex !== idx}
+						className="p-6 pt-0"
+					>
+						{openIndex === idx && (
+							<div className="grid gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-[0.5fr_1fr] ">
+								{detail.photo?.asset?._ref && (
+									<Image
+										src={urlFor(detail.photo).url()}
+										alt={detail.photo.alt || ""}
+										width={768}
+										height={576}
+										className="object-cover rounded-sm"
+									/>
+								)}
+								{detail.content && <BlockContent value={detail.content} />}
+							</div>
+						)}
+					</div>
+				</li>
+			))}
+		</ul>
+	);
+}
 
-      <div className="space-y-3">
-        {/* {event.info && (
-          <Drawer.Trigger asChild>
-            <button
-              type="button"
-              onClick={onLearnMore}
-              className={`${typography.body} block underline text-center w-full cursor-pointer hover:italic`}
-            >
-              Learn More
-            </button>
-          </Drawer.Trigger>
-        )} */}
-        <Button
-          url={event.link}
-          style="secondary"
-          text="buy tickets"
-          classes="!w-full"
-        />
-      </div>
-    </div>
-  );
+function EventCard({
+	event,
+	onLearnMore,
+}: {
+	event: EventType;
+	onLearnMore: () => void;
+}) {
+	return (
+		<div className="relative border-4 px-4 py-6 bg-white flex flex-col gap-6 sm:gap-8 sm:px-6 sm:py-10">
+			{event.tag && (
+				<p
+					className={`${typography.body} uppercase text-white bg-black py-1 px-5 absolute top-0 right-4 -translate-y-1/2`}
+				>
+					{event.tag}
+				</p>
+			)}
+
+			<div className="space-y-1 flex-1">
+				<h4 className={`${typography.h4} !font-display`}>
+					{event.name || "Untitled Event"}
+				</h4>
+				{event.description && (
+					<p className={`${typography.body}`}>{event.description}</p>
+				)}
+			</div>
+
+			<div className="space-y-1">
+				{event.location && <h6 className={typography.h6}>{event.location}</h6>}
+				{event.date && <p className={typography.body}>{event.date}</p>}
+			</div>
+
+			<div className="flex flex-col gap-2 items-center w-full">
+				{event.info && (
+					<Drawer.Trigger asChild>
+						<button
+							type="button"
+							onClick={onLearnMore}
+							className={`${typography.body} block underline text-center w-full cursor-pointer hover:italic`}
+							aria-label={`Learn more about ${event.name}`}
+						>
+							Learn More
+						</button>
+					</Drawer.Trigger>
+				)}
+				{event.link && (
+					<Button
+						url={event.link}
+						style="secondary"
+						text="Get tickets"
+						classes="!w-full"
+					/>
+				)}
+			</div>
+		</div>
+	);
 }

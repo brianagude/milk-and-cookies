@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import { buttonFields } from "../inputs/button"
+import { buttonFields } from "../inputs/button";
 
 export const home = defineType({
 	name: "home",
@@ -31,7 +31,7 @@ export const home = defineType({
 				defineField({
 					name: "backgroundVideo",
 					title: "Background Video",
-					type: "mux.video"
+					type: "mux.video",
 				}),
 				defineField({
 					name: "kicker",
@@ -54,29 +54,29 @@ export const home = defineType({
 					type: "blockContent",
 				}),
 				defineField({
-					name: 'buttons',
-					title: 'Buttons',
-					type: 'array',
-					validation: Rule => Rule.max(3),
+					name: "buttons",
+					title: "Buttons",
+					type: "array",
+					validation: (Rule) => Rule.max(3),
 					of: [
 						defineField({
 							name: "button",
 							title: "Button",
 							type: "object",
-							fields: [...buttonFields]
+							fields: [...buttonFields],
 						}),
-					]
-				})
+					],
+				}),
 			],
 		}),
 
 		// Sections
 		defineField({
-      name: 'sections',
-      title: 'Page Sections',
-      type: 'array',
-      of: [
-        defineField({
+			name: "sections",
+			title: "Page Sections",
+			type: "array",
+			of: [
+				defineField({
 					name: "actionsWrapper",
 					title: "Actions Wrapper",
 					type: "object",
@@ -99,43 +99,38 @@ export const home = defineType({
 							],
 						}),
 						defineField({
-							name: "backgroundVideo",
-							title: "Background Video",
-							type: "mux.video"
-						}),
-						defineField({
 							name: "sections",
 							title: "Body",
 							type: "array",
 							of: [
-								{type: 'countdown'},
-								{type: 'events'},
-								{type: 'products'},
-							]
+								{ type: "countdown" },
+								{ type: "events" },
+								{ type: "products" },
+							],
 						}),
 					],
 					preview: {
 						select: {
-							media: "backgroundImage"
+							media: "backgroundImage",
 						},
 						prepare(selection) {
 							const { media } = selection;
 							return {
 								title: "Actions Wrapper",
-								media
+								media,
 							};
 						},
 					},
 				}),
-        {type: 'brandsCallout'},
-        {type: 'countdown'},
-        {type: 'events'},
-        {type: 'marquee'},
-        {type: 'newsletter'},
-        {type: 'products'},
-        {type: 'textCallout'},
-      ],
-    }),
+				{ type: "brandsCallout" },
+				{ type: "countdown" },
+				{ type: "events" },
+				{ type: "marquee" },
+				{ type: "newsletter" },
+				{ type: "products" },
+				{ type: "textCallout" },
+			],
+		}),
 		// Divider
 		defineField({
 			name: "divider",

@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import { buttonFields } from "../inputs/button"
+import { buttonFields } from "../inputs/button";
 
 export const landing = defineType({
 	name: "landing",
@@ -31,7 +31,7 @@ export const landing = defineType({
 				defineField({
 					name: "backgroundVideo",
 					title: "Background Video",
-					type: "mux.video"
+					type: "mux.video",
 				}),
 				defineField({
 					name: "kicker",
@@ -54,69 +54,40 @@ export const landing = defineType({
 					type: "blockContent",
 				}),
 				defineField({
-					name: 'buttons',
-					title: 'Buttons',
-					type: 'array',
-					validation: Rule => Rule.max(3),
+					name: "buttons",
+					title: "Buttons",
+					type: "array",
+					validation: (Rule) => Rule.max(3),
 					of: [
 						defineField({
 							name: "button",
 							title: "Button",
 							type: "object",
-							fields: [...buttonFields]
+							fields: [...buttonFields],
 						}),
-					]
-				}),
-				defineField({
-					name: "subheadline1",
-					title: "Subheadline 1",
-					type: "text",
-					rows: 2,
-				}),
-				defineField({
-					name: "subheadline2",
-					title: "Subheadline 2",
-					type: "array",
-					of: [
-						{
-							type: "block",
-							styles: [{ title: "Normal", value: "normal" }],
-						},
 					],
 				}),
 			],
 		}),
-		defineField({
-      name: 'body',
-      title: 'Body',
-      type: 'array',
-      of: [
-        {type: 'brandsCallout'},
-        {type: 'countdown'},
-        {type: 'marquee'},
-        {type: 'newsletter'},
-        {type: 'textCallout'},
-      ],
-    }),
 		defineField({
 			name: "countdown",
 			title: "Countdown Section",
 			type: "object",
 			fields: [
 				defineField({
-					name: 'countdownText',
-					title: 'Countdown Text',
-					type: 'string'
+					name: "countdownText",
+					title: "Countdown Text",
+					type: "string",
 				}),
 				defineField({
-					name: 'countdownDate',
-					title: 'Countdown Date',
-					type: 'date',
+					name: "countdownDate",
+					title: "Countdown Date",
+					type: "date",
 					options: {
-						dateFormat: 'MMMM Do YYYY',
-					}
+						dateFormat: "MMMM Do YYYY",
+					},
 				}),
-			]
+			],
 		}),
 		// Newsletter Section
 		defineField({
@@ -128,6 +99,7 @@ export const landing = defineType({
 					name: "actionUrl",
 					title: "Mailchimp Form URL",
 					type: "string",
+					validation: (Rule) => Rule.required(),
 				}),
 				defineField({
 					name: "title",

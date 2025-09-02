@@ -2,11 +2,15 @@
 	"name": "milk-and-cookies",
 	"version": "0.1.0",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"dev": "next dev --turbopack",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"predev": "npm run typegen",
+    "prebuild": "npm run typegen",
+    "typegen": "sanity schema extract --enforce-required-fields && sanity typegen generate"
 	},
 	"dependencies": {
 		"@mux/mux-player-react": "^3.4.0",
@@ -18,10 +22,11 @@
 		"embla-carousel-react": "^8.6.0",
 		"next": "15.4.6",
 		"next-sanity": "^10.0.10",
+		"next-sanity-image": "^6.2.0",
 		"react": "19.1.0",
 		"react-dom": "19.1.0",
 		"react-fast-marquee": "^1.6.5",
-		"sanity": "^4.4.0",
+		"react-refractor": "^3.1.1",
 		"sanity-plugin-media": "^3.0.2",
 		"sanity-plugin-mux-input": "^2.8.0",
 		"styled-components": "^6.1.19",
@@ -35,6 +40,7 @@
 		"@types/react-dom": "^19",
 		"eslint": "^9",
 		"eslint-config-next": "15.4.6",
+		"sanity": "^4.1.1",
 		"tailwindcss": "^4",
 		"typescript": "^5"
 	},

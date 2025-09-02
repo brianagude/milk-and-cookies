@@ -1,11 +1,11 @@
 // components/HeroSection.jsx
 
-import type { SanityImageAsset } from "@types";
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 
 interface DividerProps {
-	backgroundImage?: SanityImageAsset;
+	backgroundImage?: SanityImageSource;
 }
 
 export default function Divider({ backgroundImage }: DividerProps) {
@@ -13,14 +13,12 @@ export default function Divider({ backgroundImage }: DividerProps) {
 	if (!backgroundImage) return null;
 
 	return (
-		// <div className="w-full z-10 h-12 sm:h-20 md:h-24">
 		<Image
 			src={urlFor(backgroundImage).url()}
 			width={1728}
 			height={176}
 			alt="decorative banner"
-			className="object-cover border-black border-4 mx-auto"
+			className="object-cover border-b-4 border-black"
 		/>
-		// </div>
 	);
 }

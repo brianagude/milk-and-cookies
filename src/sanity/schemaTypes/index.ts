@@ -12,5 +12,17 @@ import { products } from "./components/products";
 import { textCallout } from "./components/textCallout";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-	types: [settings, landing, home, blockContent, countdown, marquee, brandsCallout, newsletter, events, products, textCallout],
+	types: [
+		settings,
+		landing,
+		home,
+		blockContent,
+		countdown,
+		marquee,
+		brandsCallout,
+		newsletter,
+		events,
+		products,
+		textCallout,
+	],
 };
