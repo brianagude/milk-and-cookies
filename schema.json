@@ -3216,7 +3216,7 @@
           "type": "inline",
           "name": "blockContent"
         },
-        "optional": true
+        "optional": false
       }
     }
   },

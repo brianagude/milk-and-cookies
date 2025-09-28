@@ -40,7 +40,7 @@ export default function HeroSection({
 
 	return (
 		<section
-			className={`${spacing.section} ${style === "landing" ? "" : "flex flex-col items-center justify-center"} bg-black min-h-svh relative !pt-28 sm:!pt-40`}
+			className={`${spacing.section} ${style === "landing" ? "" : "flex flex-col items-center justify-center overflow-hidden"} bg-black min-h-svh relative !pt-28 sm:!pt-40`}
 		>
 			<div className={`${spacing.container} relative z-20`}>
 				<div className="text-block w-full flex flex-col items-center justify-center text-center">

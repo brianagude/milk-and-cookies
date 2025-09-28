@@ -55,7 +55,9 @@ export default async function RootLayout({
 			lang="en"
 			className={`${catalpa.variable} ${itc.variable} antialiased`}
 		>
-			<body>{children}</body>
+			<body>
+				{children}
+			</body>
 			
 		</html>
 	);

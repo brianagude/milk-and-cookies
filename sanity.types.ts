@@ -481,7 +481,7 @@ export type Settings = {
     }>;
     copyrightText?: string;
   };
-  privacy?: BlockContent;
+  privacy: BlockContent;
 };
 
 export type MuxVideo = {
