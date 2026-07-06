@@ -1,11 +1,12 @@
+import { GoogleTagManager } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
+import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity";
+import { DisableDraftMode } from "@/components/DisableDraftMode";
 import GlobalDataProvider from "@/components/GlobalDataContext";
 import Header from "@/components/Header";
 import { TailwindHelper } from "@/components/TailwindHelper";
 import { client } from "@/sanity/lib/client";
-import { VisualEditing } from "next-sanity";
-import { draftMode } from "next/headers";
-import { DisableDraftMode } from "@/components/DisableDraftMode";
-import { GoogleTagManager } from '@next/third-parties/google'
 
 // ---------- GROQ Query ----------
 const query = `*[_type == "settings"][0]{
@@ -37,6 +38,7 @@ export default async function RootLayout({
 				</main>
 			</GlobalDataProvider>
 			<GoogleTagManager gtmId="GTM-XYZ" />
+			<Analytics />
 			{process.env.NODE_ENV === "development" && <TailwindHelper />}
 			{(await draftMode()).isEnabled && (
 				<>
