@@ -24,7 +24,7 @@ const query = `*[_type == "home"][0]{
   }
 }`;
 
-export default async function Home({
+export default async function HomePage({
 	params,
 }: {
 	params: Promise<{ slug: string }>;
