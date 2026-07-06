@@ -29,24 +29,7 @@ export type TextCallout = {
     _type: "image";
   };
   headline?: string;
-  subheadline?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h5" | "h6";
-    listItem?: "bullet";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
+  subheadline?: BlockContent;
   button?: {
     text?: string;
     url?: string;
@@ -121,44 +104,10 @@ export type Events = {
     tag?: string;
     link: string;
     info?: {
-      subheadline?: Array<{
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "normal" | "h5" | "h6";
-        listItem?: "bullet";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
-        _key: string;
-      }>;
+      subheadline?: BlockContent;
       details?: Array<{
         caption?: string;
-        content?: Array<{
-          children?: Array<{
-            marks?: Array<string>;
-            text?: string;
-            _type: "span";
-            _key: string;
-          }>;
-          style?: "normal" | "h5" | "h6";
-          listItem?: "bullet";
-          markDefs?: Array<{
-            href?: string;
-            _type: "link";
-            _key: string;
-          }>;
-          level?: number;
-          _type: "block";
-          _key: string;
-        }>;
+        content?: BlockContent;
         photo?: {
           asset?: {
             _ref: string;
@@ -205,24 +154,7 @@ export type BrandsCallout = {
     _type: "image";
   };
   headline?: string;
-  subheadline?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h5" | "h6";
-    listItem?: "bullet";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
+  subheadline?: BlockContent;
   button?: {
     text?: string;
     url?: string;
@@ -385,6 +317,32 @@ export type Home = {
   };
 };
 
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+};
+
+export type MuxVideo = {
+  _type: "mux.video";
+  asset?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "mux.videoAsset";
+  };
+};
+
 export type Landing = {
   _id: string;
   _type: "landing";
@@ -517,16 +475,6 @@ export type Settings = {
   privacy: BlockContent;
 };
 
-export type MuxVideo = {
-  _type: "mux.video";
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "mux.videoAsset";
-  };
-};
-
 export type MuxVideoAsset = {
   _id: string;
   _type: "mux.videoAsset";
@@ -551,6 +499,7 @@ export type MuxAssetData = {
   max_stored_resolution?: string;
   passthrough?: string;
   encoding_tier?: string;
+  video_quality?: string;
   master_access?: string;
   aspect_ratio?: string;
   duration?: number;
@@ -576,12 +525,18 @@ export type MuxStaticRenditions = {
 
 export type MuxStaticRenditionFile = {
   _type: "mux.staticRenditionFile";
-  ext?: string;
   name?: string;
+  ext?: string;
+  height?: number;
   width?: number;
   bitrate?: number;
-  filesize?: number;
-  height?: number;
+  filesize?: string;
+  type?: string;
+  status?: string;
+  resolution_tier?: string;
+  resolution?: string;
+  id?: string;
+  passthrough?: string;
 };
 
 export type MuxPlaybackId = {
@@ -598,6 +553,11 @@ export type MuxTrack = {
   max_frame_rate?: number;
   duration?: number;
   max_height?: number;
+  language_code?: string;
+  name?: string;
+  status?: string;
+  text_source?: string;
+  text_type?: string;
 };
 
 export type MediaTag = {
@@ -607,6 +567,12 @@ export type MediaTag = {
   _updatedAt: string;
   _rev: string;
   name?: Slug;
+};
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -630,25 +596,20 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: "sanity.imageDimensions";
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
+  height: number;
+  width: number;
+  aspectRatio: number;
 };
 
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+export type SanityImageMetadata = {
+  _type: "sanity.imageMetadata";
+  location?: Geopoint;
+  dimensions?: SanityImageDimensions;
+  palette?: SanityImagePalette;
+  lqip?: string;
+  blurHash?: string;
+  hasAlpha?: boolean;
+  isOpaque?: boolean;
 };
 
 export type SanityFileAsset = {
@@ -671,6 +632,13 @@ export type SanityFileAsset = {
   path?: string;
   url?: string;
   source?: SanityAssetSourceData;
+};
+
+export type SanityAssetSourceData = {
+  _type: "sanity.assetSourceData";
+  name?: string;
+  id?: string;
+  url?: string;
 };
 
 export type SanityImageAsset = {
@@ -696,17 +664,6 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData;
 };
 
-export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata";
-  location?: Geopoint;
-  dimensions?: SanityImageDimensions;
-  palette?: SanityImagePalette;
-  lqip?: string;
-  blurHash?: string;
-  hasAlpha?: boolean;
-  isOpaque?: boolean;
-};
-
 export type Geopoint = {
   _type: "geopoint";
   lat?: number;
@@ -714,18 +671,5 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
-};
-
-export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
-};
-
-export type AllSanitySchemaTypes = TextCallout | ImageCallout | Products | Events | Newsletter | BrandsCallout | Marquee | Countdown | BlockContent | Home | Landing | Settings | MuxVideo | MuxVideoAsset | MuxAssetData | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = TextCallout | ImageCallout | Products | Events | Newsletter | BrandsCallout | Marquee | Countdown | BlockContent | Home | SanityImageCrop | SanityImageHotspot | MuxVideo | Landing | Settings | MuxVideoAsset | MuxAssetData | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | MediaTag | Slug | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;

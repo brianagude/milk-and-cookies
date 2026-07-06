@@ -6,17 +6,16 @@ import { urlFor } from "@/sanity/lib/image";
 
 export default function ImageCallout(props: ImageCalloutType) {
 	const { backgroundImage, foregroundImage } = props;
-	const hasBackgroundImage = Boolean(backgroundImage?.asset?._ref);
 
-	if (!foregroundImage?.asset?._ref && !backgroundImage?.asset?._ref) return null;
+	if (!foregroundImage) return null;
 
 	return (
-		<section className={`relative scroll-mt-2 ${hasBackgroundImage ? "p-4 border-b-4 sm:p-6 md:p-8 lg:p-20" : ""}`}>
-			<div className={`relative z-20 w-full ${hasBackgroundImage ? "border-4" : "border-b-4"}`}>
-				{foregroundImage?.asset?._ref && (
+		<section className={`relative scroll-mt-2 ${backgroundImage?.asset?._ref ? "p-4 border-b-4 sm:p-6 md:p-8 lg:p-20" : ""}`}>
+			<div className={`relative z-20 w-full ${backgroundImage?.asset?._ref ? "border-4" : "border-b-4"}`}>
+				{foregroundImage && (
 					<Image
 						src={urlFor(foregroundImage).url()}
-						alt={foregroundImage.alt || "Callout image"}
+						alt={foregroundImage?.alt || "Callout image"}
 						width={1600}
 						height={1200}
 						priority
@@ -25,11 +24,11 @@ export default function ImageCallout(props: ImageCalloutType) {
 				)}
 			</div>
 
-			{hasBackgroundImage && (
+			{backgroundImage && (
 				<div className="absolute inset-0 z-10">
 					<Image
 						src={urlFor(backgroundImage).url()}
-						alt={backgroundImage.alt || "Background image"}
+						alt={backgroundImage?.alt || "Background image"}
 						fill
 						className="object-cover"
 						priority
