@@ -8,6 +8,7 @@ export const marquee = defineType({
 		defineField({
 			name: "text",
 			title: "Text",
+			description: "The scrolling message that appears in the marquee.",
 			type: "string",
 		}),
 	],

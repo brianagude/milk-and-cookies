@@ -25,7 +25,7 @@ export type TextCallout = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt: string;
+    alt?: string;
     _type: "image";
   };
   headline?: string;
@@ -85,6 +85,7 @@ export type Products = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
+      alt?: string;
       _type: "image";
     };
     link: string;
@@ -150,7 +151,7 @@ export type BrandsCallout = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt: string;
+    alt?: string;
     _type: "image";
   };
   headline?: string;
@@ -171,7 +172,7 @@ export type BrandsCallout = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt: string;
+      alt?: string;
       _type: "image";
     };
     link?: string;
@@ -227,7 +228,7 @@ export type Home = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt: string;
+      alt?: string;
       _type: "image";
     };
     backgroundVideo?: MuxVideo;
@@ -254,7 +255,7 @@ export type Home = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt: string;
+      alt?: string;
       _type: "image";
     };
     sections?: Array<{
@@ -308,7 +309,7 @@ export type Home = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt: string;
+      alt?: string;
       _type: "image";
     };
     kicker?: string;
@@ -360,7 +361,7 @@ export type Landing = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt: string;
+      alt?: string;
       _type: "image";
     };
     backgroundVideo?: MuxVideo;
@@ -411,7 +412,7 @@ export type Landing = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt: string;
+      alt?: string;
       _type: "image";
     };
     kicker?: string;

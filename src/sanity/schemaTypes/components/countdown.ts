@@ -8,11 +8,13 @@ export const countdown = defineType({
 		defineField({
 			name: "countdownText",
 			title: "Countdown Text",
+			description: "The short message shown above the date.",
 			type: "string",
 		}),
 		defineField({
 			name: "countdownDate",
 			title: "Countdown Date",
+			description: "The date the countdown should reach zero.",
 			type: "date",
 			validation: (Rule) => Rule.required(),
 			options: {

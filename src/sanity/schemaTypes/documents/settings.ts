@@ -4,16 +4,22 @@ export const settings = defineType({
 	name: "settings",
 	title: "Settings",
 	type: "document",
+	groups: [
+		{ name: "content", title: "Content", default: true },
+		{ name: "legal", title: "Legal" },
+	],
 	fields: [
-		// Header Settings
 		defineField({
 			name: "header",
 			title: "Header",
+			description: "Controls the branding and primary call-to-action in the site header.",
 			type: "object",
+			group: "content",
 			fields: [
 				defineField({
 					name: "logo",
 					title: "Logo",
+					description: "The logo shown in the header.",
 					type: "image",
 				}),
 				defineField({
@@ -38,15 +44,17 @@ export const settings = defineType({
 			],
 		}),
 
-		// Footer Settings
 		defineField({
 			name: "footer",
 			title: "Footer",
+			description: "Controls the site footer, social links, and legal navigation.",
 			type: "object",
+			group: "content",
 			fields: [
 				defineField({
 					name: "logo",
 					title: "Logo",
+					description: "The logo shown in the footer.",
 					type: "image",
 				}),
 				defineField({
@@ -143,6 +151,7 @@ export const settings = defineType({
 			name: "privacy",
 			title: "Privacy Policy",
 			type: "blockContent",
+			group: "legal",
 			validation: (Rule) => Rule.required(),
 		})
 	],

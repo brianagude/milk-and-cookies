@@ -9,6 +9,7 @@ export const brandsCallout = defineType({
 		defineField({
 			name: "backgroundImage",
 			title: "Background Image",
+			description: "Image that sits behind the brand section content.",
 			type: "image",
 			options: {
 				hotspot: true,
@@ -17,31 +18,35 @@ export const brandsCallout = defineType({
 			fields: [
 				defineField({
 					name: "alt",
-					title: "Alt Text",
+					title: "Alt text (optional)",
+					description: "Helpful for accessibility when the image carries meaning.",
 					type: "string",
-					validation: (Rule) => Rule.required(),
 				}),
 			],
 		}),
 		defineField({
 			name: "headline",
 			title: "Headline",
+			description: "Short heading for the brands block.",
 			type: "string",
 		}),
 		defineField({
 			name: "subheadline",
 			title: "Subheadline",
+			description: "Support copy shown below the headline.",
 			type: "blockContent",
 		}),
 		defineField({
 			name: "button",
 			title: "Button",
+			description: "Optional call to action for the section.",
 			type: "object",
 			fields: [...buttonFields],
 		}),
 		defineField({
 			name: "brands",
 			title: "Brands",
+			description: "Add each brand or partner logo to feature.",
 			type: "array",
 			of: [
 				defineField({
@@ -52,20 +57,22 @@ export const brandsCallout = defineType({
 						defineField({
 							name: "logo",
 							title: "Logo",
+							description: "Upload the brand or partner logo.",
 							type: "image",
 							validation: (Rule) => Rule.required(),
 							fields: [
 								defineField({
 									name: "alt",
-									title: "Brand Name",
+									title: "Alt text (optional)",
+									description: "Helpful for accessibility when the image carries meaning.",
 									type: "string",
-									validation: (Rule) => Rule.required(),
 								}),
 							],
 						}),
 						defineField({
 							name: "link",
 							title: "Link to article",
+							description: "Optional destination for this brand card.",
 							type: "url",
 						}),
 					],

@@ -8,23 +8,27 @@ export const newsletter = defineType({
 		defineField({
 			name: "actionUrl",
 			title: "Mailchimp Form URL",
+			description: "The form endpoint used to submit the signup.",
 			type: "string",
 			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: "title",
 			title: "Title",
+			description: "Headline or intro copy for the signup block.",
 			type: "text",
 			rows: 2,
 		}),
 		defineField({
 			name: "buttonText",
 			title: "Button Text",
+			description: "Text shown on the submit button.",
 			type: "string",
 		}),
 		defineField({
 			name: "backgroundColor",
 			title: "Background Color",
+			description: "Choose the visual treatment for this block.",
 			type: "string",
 			options: {
 				list: [

@@ -8,12 +8,13 @@ export const imageCallout = defineType({
 		defineField({
 			name: "headline",
 			title: "Image Description",
-			description: "What is this an image of?",
+			description: "What is this image meant to communicate?",
 			type: "string",
 		}),
 		defineField({
 			name: "foregroundImage",
 			title: "Foreground Image",
+			description: "The main image that appears in front of the background layer.",
 			type: "image",
 			options: {
 				hotspot: true,
@@ -22,7 +23,8 @@ export const imageCallout = defineType({
 			fields: [
 				defineField({
 					name: "alt",
-					title: "Alt Text",
+					title: "Alt text (optional)",
+					description: "Helpful for accessibility when the image carries meaning.",
 					type: "string",
 				}),
 			],
@@ -30,6 +32,7 @@ export const imageCallout = defineType({
 		defineField({
 			name: "backgroundImage",
 			title: "Background Image",
+			description: "Optional supporting image behind the foreground layer.",
 			type: "image",
 			options: {
 				hotspot: true,
@@ -37,7 +40,8 @@ export const imageCallout = defineType({
 			fields: [
 				defineField({
 					name: "alt",
-					title: "Alt Text",
+					title: "Alt text (optional)",
+					description: "Helpful for accessibility when the image carries meaning.",
 					type: "string",
 				}),
 			],
