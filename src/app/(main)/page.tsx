@@ -1,15 +1,16 @@
 import type { Home } from "@types";
+import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import ActionsWrapper from "@/components/ActionsWrapper";
 import BrandsCallout from "@/components/BrandsCallout";
 import Divider from "@/components/Divider";
 import FinalCallout from "@/components/FinalCallout";
 import HeroSection from "@/components/Hero";
+import ImageCallout from "@/components/ImageCallout";
 import Marquee from "@/components/Marquee";
 import NewsletterSection from "@/components/Newsletter";
 import TextCallout from "@/components/TextCallout";
 import { client } from "@/sanity/lib/client";
-import { draftMode } from "next/headers";
 
 const query = `*[_type == "home"][0]{
 	hero {
@@ -24,23 +25,23 @@ const query = `*[_type == "home"][0]{
 }`;
 
 export default async function Home({
-  params,
+	params,
 }: {
-  params: Promise<{ slug: string }>;
+	params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params;
-  const { isEnabled } = await draftMode();
-  const data = await client.fetch<Home>(
-    query,
-    { slug },
-    isEnabled
-      ? {
-          perspective: "previewDrafts",
-          useCdn: false,
-          stega: true,
-        }
-      : undefined
-  );
+	const { slug } = await params;
+	const { isEnabled } = await draftMode();
+	const data = await client.fetch<Home>(
+		query,
+		{ slug },
+		isEnabled
+			? {
+					perspective: "previewDrafts",
+					useCdn: false,
+					stega: true,
+				}
+			: undefined,
+	);
 	if (!data) return notFound();
 	const { hero, sections, divider, finalCallout } = data || {};
 
@@ -53,6 +54,8 @@ export default async function Home({
 						switch (module._type) {
 							case "marquee":
 								return <Marquee {...module} key={module._key} />;
+							case "imageCallout":
+								return <ImageCallout {...module} key={module._key} />;
 							case "textCallout":
 								return <TextCallout {...module} key={module._key} />;
 							case "actionsWrapper":

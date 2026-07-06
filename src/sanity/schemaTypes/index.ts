@@ -9,6 +9,7 @@ import { brandsCallout } from "./components/brandsCallout";
 import { newsletter } from "./components/newsletter";
 import { events } from "./components/events";
 import { products } from "./components/products";
+import { imageCallout } from "./components/imageCallout";
 import { textCallout } from "./components/textCallout";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -23,6 +24,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 		newsletter,
 		events,
 		products,
+		imageCallout,
 		textCallout,
 	],
 };

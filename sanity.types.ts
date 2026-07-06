@@ -54,6 +54,37 @@ export type TextCallout = {
   };
 };
 
+export type ImageCallout = {
+  _type: "imageCallout";
+  headline?: string;
+  foregroundImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  backgroundImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+};
+
 export type Products = {
   _type: "products";
   headline?: string;
@@ -317,6 +348,8 @@ export type Home = {
     _key: string;
   } & Products | {
     _key: string;
+  } & ImageCallout | {
+    _key: string;
   } & TextCallout>;
   divider?: {
     backgroundImage: {
@@ -481,7 +514,7 @@ export type Settings = {
     }>;
     copyrightText?: string;
   };
-  privacy?: BlockContent;
+  privacy: BlockContent;
 };
 
 export type MuxVideo = {
@@ -694,5 +727,5 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = TextCallout | Products | Events | Newsletter | BrandsCallout | Marquee | Countdown | BlockContent | Home | Landing | Settings | MuxVideo | MuxVideoAsset | MuxAssetData | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = TextCallout | ImageCallout | Products | Events | Newsletter | BrandsCallout | Marquee | Countdown | BlockContent | Home | Landing | Settings | MuxVideo | MuxVideoAsset | MuxAssetData | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;

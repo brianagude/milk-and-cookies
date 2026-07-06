@@ -128,6 +128,7 @@ export const home = defineType({
 				{ type: "marquee" },
 				{ type: "newsletter" },
 				{ type: "products" },
+				{ type: "imageCallout" },
 				{ type: "textCallout" },
 			],
 		}),
