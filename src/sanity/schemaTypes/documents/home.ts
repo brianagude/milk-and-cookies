@@ -5,24 +5,18 @@ export const home = defineType({
 	name: "home",
 	title: "Home Page",
 	type: "document",
-	groups: [
-		{ name: "content", title: "Content", default: true },
-		{ name: "media", title: "Media" },
-	],
 	fields: [
 		defineField({
 			name: "hero",
 			title: "Hero Section",
 			description: "The main intro area for the homepage.",
 			type: "object",
-			group: "content",
 			fields: [
 				defineField({
 					name: "backgroundImage",
 					title: "Background Image",
 					description: "Optional hero image shown behind the main message.",
 					type: "image",
-					group: "media",
 					options: {
 						hotspot: true,
 					},
@@ -40,37 +34,31 @@ export const home = defineType({
 					title: "Background Video",
 					description: "Optional fullscreen video for the hero area.",
 					type: "mux.video",
-					group: "media",
 				}),
 				defineField({
 					name: "kicker",
 					title: "Kicker",
 					type: "string",
-					group: "content",
 				}),
 				defineField({
 					name: "headline1",
 					title: "Headline 1",
 					type: "string",
-					group: "content",
 				}),
 				defineField({
 					name: "headline2",
 					title: "Headline 2",
 					type: "string",
-					group: "content",
 				}),
 				defineField({
 					name: "subheadline",
 					title: "Subheadline",
 					type: "blockContent",
-					group: "content",
 				}),
 				defineField({
 					name: "buttons",
 					title: "Buttons",
 					type: "array",
-					group: "content",
 					validation: (Rule) => Rule.max(3),
 					of: [
 						defineField({
@@ -89,7 +77,6 @@ export const home = defineType({
 			title: "Page Sections",
 			description: "Add and reorder the content modules that appear below the hero.",
 			type: "array",
-			group: "content",
 			of: [
 				defineField({
 					name: "actionsWrapper",
@@ -102,7 +89,6 @@ export const home = defineType({
 							title: "Background Image",
 							description: "Image that sits behind the wrapped content area.",
 							type: "image",
-							group: "media",
 							options: {
 								hotspot: true,
 							},
@@ -156,14 +142,12 @@ export const home = defineType({
 			title: "Divider",
 			description: "A simple visual break between content sections.",
 			type: "object",
-			group: "content",
 			fields: [
 				defineField({
 					name: "backgroundImage",
 					title: "Background Image",
 					description: "Optional image used as the divider graphic.",
 					type: "image",
-					group: "media",
 					validation: (Rule) => Rule.required(),
 				}),
 			],
@@ -174,14 +158,12 @@ export const home = defineType({
 			title: "Final Callout",
 			description: "The closing promotional section that appears near the bottom of the page.",
 			type: "object",
-			group: "content",
 			fields: [
 				defineField({
 					name: "backgroundImage",
 					title: "Background Image",
 					description: "Image shown behind the closing message.",
 					type: "image",
-					group: "media",
 					options: {
 						hotspot: true,
 					},
@@ -199,20 +181,17 @@ export const home = defineType({
 					name: "kicker",
 					title: "Kicker",
 					type: "string",
-					group: "content",
 				}),
 				defineField({
 					name: "headline",
 					title: "Headline",
 					type: "text",
 					rows: 2,
-					group: "content",
 				}),
 				defineField({
 					name: "body",
 					title: "Body Text",
 					type: "blockContent",
-					group: "content",
 				}),
 			],
 		}),
