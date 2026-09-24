@@ -13,12 +13,10 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
-	// typescript: {
-	//   ignoreBuildErrors: true,
-	// },
-	// eslint: {
-	//   ignoreDuringBuilds: true,
-	// },
+	// Linting is handled by Biome (`pnpm lint`), so skip Next's ESLint step
+	eslint: {
+		ignoreDuringBuilds: true,
+	},
 };
 
 export default nextConfig;

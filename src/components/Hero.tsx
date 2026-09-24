@@ -69,9 +69,7 @@ export default function HeroSection({
 							{headline2}
 						</h2>
 					)}
-					{subheadline && (
-						<ChunkyBlockContent value={subheadline} />
-					)}
+					{subheadline && <ChunkyBlockContent value={subheadline} />}
 				</div>
 
 				{Array.isArray(buttons) && buttons.length > 0 && (
@@ -122,7 +120,6 @@ export default function HeroSection({
 						width={216}
 						className="h-full w-auto"
 						priority
-
 					/>
 				</div>
 			)}
@@ -135,7 +132,6 @@ export default function HeroSection({
 						width={216}
 						className="h-full w-auto"
 						priority
-
 					/>
 				</div>
 			)}

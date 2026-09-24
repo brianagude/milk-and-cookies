@@ -1,4 +1,4 @@
-import type { BrandsCallout } from "@types";
+import type { BrandsCallout as BrandsCalloutProps } from "@types";
 import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
@@ -6,7 +6,7 @@ import { typography } from "@/styles/design-tokens";
 import Button from "./inputs/Button";
 import { BlockContent } from "./inputs/PortableTextComponents";
 
-export default function BrandsCallout(props: BrandsCallout) {
+export default function BrandsCallout(props: BrandsCalloutProps) {
 	const { backgroundImage, button, headline, subheadline, brands } = props;
 	if (!headline && !subheadline && !button && !backgroundImage && !brands)
 		return null;

@@ -8,7 +8,7 @@ export function DisableDraftMode() {
 	const router = useRouter();
 	const [pending, startTransition] = useTransition();
 
-	if (window !== window.parent || !!window.opener) {
+	if (window !== window.parent || window.opener) {
 		return null;
 	}
 
@@ -23,7 +23,11 @@ export function DisableDraftMode() {
 			{pending ? (
 				"Disabling draft mode..."
 			) : (
-				<button type="button" onClick={disable}>
+				<button
+					type="button"
+					onClick={disable}
+					className="cursor-pointer fixed bottom-2 right-2"
+				>
 					Disable draft mode
 				</button>
 			)}

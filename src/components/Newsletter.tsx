@@ -74,6 +74,7 @@ export default function Newsletter({
 					onSubmit={handleSubmit}
 					className="grid grid-cols-1 gap-6 lg:grid-cols-2"
 					aria-label="Sign up for our mailing list"
+					rel="noopener"
 				>
 					{/* First Name */}
 					<div className={forms.fieldset}>

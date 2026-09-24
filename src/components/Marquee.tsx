@@ -1,6 +1,6 @@
+import type { Marquee as MarqueeType } from "@types";
 import FastScroll from "react-fast-marquee";
 import { typography } from "@/styles/design-tokens";
-import type { Marquee as MarqueeType } from "@types"
 
 export default function Marquee(props: MarqueeType) {
 	if (!props.text) return null;
