@@ -10,8 +10,12 @@ export default function ImageCallout(props: ImageCalloutType) {
 	if (!foregroundImage) return null;
 
 	return (
-		<section className={`relative scroll-mt-2 ${backgroundImage?.asset?._ref ? "p-4 border-b-4 sm:p-6 md:p-8 lg:p-20" : ""}`}>
-			<div className={`relative z-20 w-full ${backgroundImage?.asset?._ref ? "border-4" : "border-b-4"}`}>
+		<section
+			className={`relative scroll-mt-2 ${backgroundImage?.asset?._ref ? "p-4 border-b-4 sm:p-6 md:p-8 lg:p-20" : ""}`}
+		>
+			<div
+				className={`relative z-20 w-full ${backgroundImage?.asset?._ref ? "border-4" : "border-b-4"}`}
+			>
 				{foregroundImage && (
 					<Image
 						src={urlFor(foregroundImage).url()}

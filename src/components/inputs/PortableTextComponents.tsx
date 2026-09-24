@@ -5,22 +5,33 @@ import { typography } from "@/styles/design-tokens";
 
 const blockContentComponents: PortableTextComponents = {
 	block: {
-		h5: ({ children }) => <h5 className={`${typography.h5} mb-4`}>{children}</h5>,
-		h6: ({ children }) => <h6 className={`${typography.h6} mb-4`}>{children}</h6>,
+		h5: ({ children }) => (
+			<h5 className={`${typography.h5} mb-4`}>{children}</h5>
+		),
+		h6: ({ children }) => (
+			<h6 className={`${typography.h6} mb-4`}>{children}</h6>
+		),
 		normal: ({ children }) => (
 			<p className={`${typography.bodyLarge}`}>{children}</p>
 		),
 	},
 	list: {
 		bullet: ({ children }) => (
-			<ul className={`${typography.bodyLarge} text-block-list list-disc w-full max-w-7xl pl-5 space-y-1 mt-2`}>
+			<ul
+				className={`${typography.bodyLarge} text-block-list list-disc w-full max-w-7xl pl-5 space-y-1 mt-2`}
+			>
 				<span>{children}</span>
 			</ul>
 		),
 	},
 	marks: {
 		link: ({ children, value }) => (
-			<a href={value?.href} className={typography.link} target="_blank">
+			<a
+				href={value?.href}
+				className={typography.link}
+				target="_blank"
+				rel="noopener"
+			>
 				{children}
 			</a>
 		),
@@ -48,12 +59,16 @@ export const BlockContent = ({
 const chunkyBlockContentComponents: PortableTextComponents = {
 	block: {
 		h5: ({ children }) => (
-			<h5 className={`${typography.h4} ${typography.blockSmall} text-blue mb-4`}>
+			<h5
+				className={`${typography.h4} ${typography.blockSmall} text-blue mb-4`}
+			>
 				{children}
 			</h5>
 		),
 		h6: ({ children }) => (
-			<h6 className={`${typography.h5} ${typography.blockSmall} text-olive mb-4`}>
+			<h6
+				className={`${typography.h5} ${typography.blockSmall} text-olive mb-4`}
+			>
 				{children}
 			</h6>
 		),
@@ -65,14 +80,21 @@ const chunkyBlockContentComponents: PortableTextComponents = {
 	},
 	list: {
 		bullet: ({ children }) => (
-			<ul className={`${typography.body} text-block-list list-disc w-full max-w-7xl pl-5 space-y-1 mt-2`}>
+			<ul
+				className={`${typography.body} text-block-list list-disc w-full max-w-7xl pl-5 space-y-1 mt-2`}
+			>
 				<span>{children}</span>
 			</ul>
 		),
 	},
 	marks: {
 		link: ({ children, value }) => (
-			<a href={value?.href} className={typography.link} target="_blank">
+			<a
+				href={value?.href}
+				className={typography.link}
+				target="_blank"
+				rel="noopener"
+			>
 				{children}
 			</a>
 		),
@@ -99,22 +121,33 @@ export const ChunkyBlockContent = ({
 
 const legalBlockContentComponents: PortableTextComponents = {
 	block: {
-		h5: ({ children }) => <h5 className={`${typography.h5} mt-4`}>{children}</h5>,
-		h6: ({ children }) => <h6 className={`${typography.h6} mt-4`}>{children}</h6>,
+		h5: ({ children }) => (
+			<h5 className={`${typography.h5} mt-4`}>{children}</h5>
+		),
+		h6: ({ children }) => (
+			<h6 className={`${typography.h6} mt-4`}>{children}</h6>
+		),
 		normal: ({ children }) => (
 			<p className={`${typography.bodySmall}`}>{children}</p>
 		),
 	},
 	list: {
 		bullet: ({ children }) => (
-			<ul className={`${typography.bodySmall} text-block-list list-disc w-full max-w-7xl pl-5 space-y-1 mt-2`}>
+			<ul
+				className={`${typography.bodySmall} text-block-list list-disc w-full max-w-7xl pl-5 space-y-1 mt-2`}
+			>
 				{children}
 			</ul>
 		),
 	},
 	marks: {
 		link: ({ children, value }) => (
-			<a href={value?.href} className={typography.link} target="_blank">
+			<a
+				href={value?.href}
+				className={typography.link}
+				target="_blank"
+				rel="noopener"
+			>
 				{children}
 			</a>
 		),
